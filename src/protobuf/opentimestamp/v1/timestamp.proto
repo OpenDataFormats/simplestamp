@@ -1,0 +1,57 @@
+//
+// Open Timestamp data models for storing attestations.
+//
+// License: Unlicense https://unlicense.org
+//
+syntax = "proto3";
+
+package opentimestamp.v1;
+
+import "opentimestamp/v1/attestation.proto";
+import "opentimestamp/v1/identity.proto";
+import "opentimestamp/v1/location.proto";
+
+
+message OpenTimestamp {
+  // The binary hash of the data this timestamp is for.
+  // Most likely the SHA256 of a file.
+  bytes hash = 1;
+
+  // The random data that is appended to the hash on creation.  This results in
+  // stamping the same file multiple times and getting a unique stamp. The value
+  // submitted to the server is then: SHA256(CONCAT(hash, nonce))
+  bytes nonce = 2;
+
+  // The attestations made
+  repeated opentimestamp.v1.Attestation attestations = 3;
+
+  // The UNIX timestamp of when this was originally created
+  uint32 created = 4;
+
+  // OPTIONALS - The following fields are optional
+  //
+  // If these fields are set, they will be included when computing the digest hash, ie
+  // digestHash = SHA256(CONCAT(hash, nonce, source, identity))
+
+  // URL, file name, or general description for where the data
+  // used to generate the hash came from.
+  string source = 5;
+
+  // Identity of the organization and/or person stamping
+  opentimestamp.v1.Identity identity = 6;
+
+  // Where the timestamp was created and it's trajectory if moving
+  opentimestamp.v1.Location location = 7;
+
+  // Assorted free form details for the creator to describe the purpose or intent
+  string description = 8;
+
+  // Cryptographic signature of the hash sent to digest. This lets the person making
+  // the Timestamp use a private key to sign, so others can validate with their
+  // public key.
+  bytes signature = 9;
+
+  // Unique identifier for the key used to sign. Open ended, to help identity which key was
+  // used. Should not contain anything from the key itself.
+  string key_id = 10;
+}

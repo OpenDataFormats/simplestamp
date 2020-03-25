@@ -1,0 +1,198 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="utf-8">
+    <title>JSDoc: Source: lib/execution.js</title>
+
+    <script src="scripts/prettify/prettify.js"> </script>
+    <script src="scripts/prettify/lang-css.js"> </script>
+    <!--[if lt IE 9]>
+      <script src="//html5shiv.googlecode.com/svn/trunk/html5.js"></script>
+    <![endif]-->
+    <link type="text/css" rel="stylesheet" href="styles/prettify-tomorrow.css">
+    <link type="text/css" rel="stylesheet" href="styles/jsdoc-default.css">
+</head>
+
+<body>
+
+<div id="main">
+
+    <h1 class="page-title">Source: lib/execution.js</h1>
+
+    
+
+
+
+    
+    <section>
+        <article>
+            <pre class="prettyprint source linenums"><code>/**
+ * @fileoverview Iterates over a list of operations and performs them on a
+ * source input.
+ *
+ * @author davidarvan
+ * @license Unlicense https://unlicense.org
+ */
+const crypto = require('crypto');
+
+const { OperationType } = require('../models/opentimestamp/v1/operation_pb');
+const Parser = require('./parser');
+
+
+class Execution {
+  /**
+   * Given a source hash and list of operations, iterate over the operations to derive
+   * the key to the calendar server to query for the status. Stops processing when
+   * it finds the first OPERATION_TYPE_ATTESTATION.
+   *
+   * @param {Buffer} hash
+   * @param {Array.&lt;proto.opentimestamp.v1.Operation>} operations
+   * @return {Buffer}
+   */
+  static deriveCalendarKey(hash, operations) {
+    let index = 0;
+    let result = hash;
+    let type = operations[index].getType();
+
+    while (type !== OperationType.OPERATION_TYPE_ATTESTATION) {
+      const operation = operations[index];
+      const value = Buffer.from(operation.getValue());
+
+      switch (type) {
+        case OperationType.OPERATION_TYPE_SHA1:
+          result = crypto.createHash('sha1').update(result).digest();
+          break;
+
+        case OperationType.OPERATION_TYPE_RIPEMD160:
+          result = crypto.createHash('ripemd160').update(result).digest();
+          break;
+
+        case OperationType.OPERATION_TYPE_SHA256:
+          result = Execution.sha256(result);
+          break;
+
+        case OperationType.OPERATION_TYPE_APPEND:
+          result = Buffer.concat([result, value]);
+          break;
+
+        case OperationType.OPERATION_TYPE_PREPEND:
+          result = Buffer.concat([value, result]);
+          break;
+      }
+
+      type = operations[index + 1]
+        ? operations[index + 1].getType() : OperationType.OPERATION_TYPE_ATTESTATION;
+      index += 1;
+    }
+
+    return result;
+  }
+
+
+  /**
+   * Takes an initial input and list of Operations and preforms, returning the result.
+   *
+   * @param {Buffer} initial
+   * @param {proto.opentimestamp.v1.Attestation} attestation
+   * @return {Buffer}
+   */
+  static processOperations(initial, attestation) {
+    let result = initial;
+
+    attestation.getOperationsList().forEach((op) => {
+      const type = op.getType();
+      const value = Buffer.from(op.getValue());
+
+      switch (type) {
+        case OperationType.OPERATION_TYPE_ATTESTATION:
+          attestation.setStatus(op.getStatus());
+
+          // Override these properties only if they are set
+          attestation.setCalendarUrl(op.getCalendarUrl() || attestation.getCalendarUrl());
+          attestation.setBlockHeight(op.getBlockHeight() || attestation.getBlockHeight());
+          break;
+
+        case OperationType.OPERATION_TYPE_SHA1:
+          result = crypto.createHash('sha1').update(result).digest();
+          break;
+
+        case OperationType.OPERATION_TYPE_RIPEMD160:
+          result = crypto.createHash('ripemd160').update(result).digest();
+          break;
+
+        case OperationType.OPERATION_TYPE_SHA256:
+          result = Execution.sha256(result);
+          break;
+
+        case OperationType.OPERATION_TYPE_APPEND:
+          result = Buffer.concat([result, value]);
+
+          // If we're about to append only 4 bytes, we've built a transaction, and
+          // the reversed double hash will be the transaction ID.
+          if (value.length === 4) {
+            const txId = Parser.reverse(Execution.sha256(Execution.sha256(result)));
+            attestation.setTransactionId(Uint8Array.from(txId));
+          }
+          break;
+
+        case OperationType.OPERATION_TYPE_PREPEND:
+          // If we're about to concatenate with a large amount of data, we have
+          // the merkle root of the hashes submitted in the transaction on chain
+          if (value.length > 64) {
+            attestation.setTimestampMerkleRoot(Uint8Array.from(result));
+          }
+
+          result = Buffer.concat([value, result]);
+          break;
+
+        default:
+          throw new Error(`Cannot handle an operation of type ${type}`);
+      }
+    });
+
+    // If a block height was set, we have the merkle root data for the transation
+    // to block as well, and the reversed result is our on chain block merkle root
+    if (attestation.getBlockHeight()) {
+      attestation.setBlockMerkleRoot(Uint8Array.from(Parser.reverse(result)));
+    }
+
+    return attestation;
+  }
+
+
+  /**
+   * SHA256 hash the input binary
+   *
+   * @param {Buffer} input The data to hash
+   * @return {Buffer}
+   */
+  static sha256(input) {
+    return crypto.createHash('sha256').update(Buffer.from(input)).digest();
+  }
+}
+
+
+module.exports = Execution;
+</code></pre>
+        </article>
+    </section>
+
+
+
+
+</div>
+
+<nav>
+    <h2><a href="index.html">Home</a></h2><h3>Classes</h3><ul><li><a href="Timestamp.html">Timestamp</a></li></ul>
+</nav>
+
+<br class="clear">
+
+<footer>
+    Documentation generated by <a href="https://github.com/jsdoc/jsdoc">JSDoc 3.6.3</a> on Wed Mar 25 2020 08:22:32 GMT+0100 (Central European Standard Time)
+</footer>
+
+<script> prettyPrint(); </script>
+<script src="scripts/linenumber.js"> </script>
+</body>
+</html>

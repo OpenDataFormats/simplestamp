@@ -1,0 +1,46 @@
+//
+// Open Timestamp data models for storing attestations.
+//
+// License: Unlicense https://unlicense.org
+//
+syntax = "proto3";
+
+package opentimestamp.v1;
+
+import "opentimestamp/v1/status.proto";
+
+
+// The type of operation to perform. Enum values correspond to the wire format
+// in the server calls.
+enum OperationType {
+  OPERATION_TYPE_ATTESTATION = 0;
+
+  OPERATION_TYPE_SHA1 = 2;
+  OPERATION_TYPE_RIPEMD160 = 3;
+  OPERATION_TYPE_SHA256 = 8;
+
+  OPERATION_TYPE_APPEND = 240;
+  OPERATION_TYPE_PREPEND = 241;
+  OPERATION_TYPE_REVERSE = 242;
+  OPERATION_TYPE_HEXLIFY = 243;
+}
+
+
+message Operation {
+  OperationType type = 1;
+
+  // (optional) The value of the argument passed into the operation routine in the
+  // case of append and prepend.
+  bytes value = 2;
+
+  // (optional) An update to the Attestation's status
+  opentimestamp.v1.AttestationStatus status = 3;
+
+  // The following values act on the Attestation in an "operational transform" way
+
+  // The fully qualified URL of the calendar server the stamping was made on.
+  string calendar_url = 4;
+
+  // If the attestation indicates it is on chain
+  uint32 block_height = 5;
+}

@@ -1,0 +1,260 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<coverage generated="1585120950085" clover="3.2.0">
+  <project timestamp="1585120950085" name="All files">
+    <metrics statements="242" coveredstatements="242" conditionals="69" coveredconditionals="69" methods="46" coveredmethods="46" elements="357" coveredelements="357" complexity="0" loc="242" ncloc="242" packages="1" files="4" classes="4"/>
+    <file name="calendar.js" path="/Users/david/src/opendataformats/opentimestamp/src/javascript/opentimestamp/lib/calendar.js">
+      <metrics statements="34" coveredstatements="34" conditionals="4" coveredconditionals="4" methods="9" coveredmethods="9"/>
+      <line num="11" count="2" type="stmt"/>
+      <line num="12" count="2" type="stmt"/>
+      <line num="13" count="2" type="stmt"/>
+      <line num="15" count="2" type="stmt"/>
+      <line num="17" count="2" type="stmt"/>
+      <line num="18" count="8" type="stmt"/>
+      <line num="30" count="2" type="stmt"/>
+      <line num="31" count="6" type="cond" truecount="2" falsecount="0"/>
+      <line num="34" count="2" type="stmt"/>
+      <line num="35" count="6" type="stmt"/>
+      <line num="38" count="2" type="stmt"/>
+      <line num="39" count="6" type="stmt"/>
+      <line num="40" count="6" type="stmt"/>
+      <line num="41" count="3" type="stmt"/>
+      <line num="45" count="3" type="stmt"/>
+      <line num="49" count="2" type="stmt"/>
+      <line num="61" count="6" type="stmt"/>
+      <line num="72" count="6" type="stmt"/>
+      <line num="84" count="3" type="stmt"/>
+      <line num="86" count="3" type="cond" truecount="2" falsecount="0"/>
+      <line num="87" count="1" type="stmt"/>
+      <line num="90" count="2" type="stmt"/>
+      <line num="91" count="6" type="stmt"/>
+      <line num="94" count="2" type="stmt"/>
+      <line num="107" count="6" type="stmt"/>
+      <line num="108" count="6" type="stmt"/>
+      <line num="113" count="6" type="stmt"/>
+      <line num="115" count="6" type="stmt"/>
+      <line num="124" count="6" type="stmt"/>
+      <line num="126" count="6" type="stmt"/>
+      <line num="127" count="6" type="stmt"/>
+      <line num="128" count="3" type="stmt"/>
+      <line num="131" count="3" type="stmt"/>
+      <line num="184" count="2" type="stmt"/>
+    </file>
+    <file name="execution.js" path="/Users/david/src/opendataformats/opentimestamp/src/javascript/opentimestamp/lib/execution.js">
+      <metrics statements="53" coveredstatements="53" conditionals="24" coveredconditionals="24" methods="4" coveredmethods="4"/>
+      <line num="8" count="3" type="stmt"/>
+      <line num="10" count="3" type="stmt"/>
+      <line num="11" count="3" type="stmt"/>
+      <line num="25" count="35" type="stmt"/>
+      <line num="26" count="35" type="stmt"/>
+      <line num="27" count="35" type="stmt"/>
+      <line num="29" count="35" type="stmt"/>
+      <line num="30" count="139" type="stmt"/>
+      <line num="31" count="139" type="stmt"/>
+      <line num="33" count="139" type="cond" truecount="5" falsecount="0"/>
+      <line num="35" count="1" type="stmt"/>
+      <line num="36" count="1" type="stmt"/>
+      <line num="39" count="1" type="stmt"/>
+      <line num="40" count="1" type="stmt"/>
+      <line num="43" count="33" type="stmt"/>
+      <line num="44" count="33" type="stmt"/>
+      <line num="47" count="69" type="stmt"/>
+      <line num="48" count="69" type="stmt"/>
+      <line num="51" count="35" type="stmt"/>
+      <line num="52" count="35" type="stmt"/>
+      <line num="55" count="139" type="cond" truecount="2" falsecount="0"/>
+      <line num="57" count="139" type="stmt"/>
+      <line num="60" count="35" type="stmt"/>
+      <line num="72" count="15" type="stmt"/>
+      <line num="74" count="15" type="stmt"/>
+      <line num="75" count="401" type="stmt"/>
+      <line num="76" count="401" type="stmt"/>
+      <line num="78" count="401" type="cond" truecount="7" falsecount="0"/>
+      <line num="80" count="19" type="stmt"/>
+      <line num="83" count="19" type="cond" truecount="2" falsecount="0"/>
+      <line num="84" count="19" type="cond" truecount="2" falsecount="0"/>
+      <line num="85" count="19" type="stmt"/>
+      <line num="88" count="1" type="stmt"/>
+      <line num="89" count="1" type="stmt"/>
+      <line num="92" count="1" type="stmt"/>
+      <line num="93" count="1" type="stmt"/>
+      <line num="96" count="207" type="stmt"/>
+      <line num="97" count="207" type="stmt"/>
+      <line num="100" count="93" type="stmt"/>
+      <line num="104" count="93" type="cond" truecount="2" falsecount="0"/>
+      <line num="105" count="5" type="stmt"/>
+      <line num="106" count="5" type="stmt"/>
+      <line num="108" count="93" type="stmt"/>
+      <line num="113" count="79" type="cond" truecount="2" falsecount="0"/>
+      <line num="114" count="5" type="stmt"/>
+      <line num="117" count="79" type="stmt"/>
+      <line num="118" count="79" type="stmt"/>
+      <line num="121" count="1" type="stmt"/>
+      <line num="127" count="14" type="cond" truecount="2" falsecount="0"/>
+      <line num="128" count="5" type="stmt"/>
+      <line num="131" count="14" type="stmt"/>
+      <line num="142" count="354" type="stmt"/>
+      <line num="147" count="3" type="stmt"/>
+    </file>
+    <file name="parser.js" path="/Users/david/src/opendataformats/opentimestamp/src/javascript/opentimestamp/lib/parser.js">
+      <metrics statements="50" coveredstatements="50" conditionals="17" coveredconditionals="17" methods="5" coveredmethods="5"/>
+      <line num="9" count="4" type="stmt"/>
+      <line num="10" count="4" type="stmt"/>
+      <line num="12" count="4" type="stmt"/>
+      <line num="13" count="4" type="stmt"/>
+      <line num="28" count="34" type="stmt"/>
+      <line num="29" count="34" type="stmt"/>
+      <line num="34" count="34" type="stmt"/>
+      <line num="35" count="565" type="stmt"/>
+      <line num="36" count="565" type="stmt"/>
+      <line num="38" count="565" type="cond" truecount="2" falsecount="0"/>
+      <line num="39" count="8" type="stmt"/>
+      <line num="42" count="557" type="stmt"/>
+      <line num="43" count="557" type="stmt"/>
+      <line num="45" count="557" type="cond" truecount="6" falsecount="0"/>
+      <line num="49" count="292" type="stmt"/>
+      <line num="52" count="239" type="stmt"/>
+      <line num="53" count="239" type="stmt"/>
+      <line num="55" count="26" type="stmt"/>
+      <line num="56" count="26" type="stmt"/>
+      <line num="57" count="26" type="stmt"/>
+      <line num="58" count="26" type="stmt"/>
+      <line num="60" count="25" type="cond" truecount="3" falsecount="0"/>
+      <line num="62" count="17" type="stmt"/>
+      <line num="65" count="17" type="stmt"/>
+      <line num="68" count="7" type="stmt"/>
+      <line num="71" count="7" type="stmt"/>
+      <line num="73" count="25" type="stmt"/>
+      <line num="76" count="556" type="cond" truecount="2" falsecount="0"/>
+      <line num="77" count="239" type="stmt"/>
+      <line num="78" count="239" type="stmt"/>
+      <line num="81" count="556" type="stmt"/>
+      <line num="84" count="25" type="stmt"/>
+      <line num="92" count="26" type="stmt"/>
+      <line num="93" count="26" type="cond" truecount="2" falsecount="0"/>
+      <line num="105" count="282" type="stmt"/>
+      <line num="107" count="282" type="cond" truecount="2" falsecount="0"/>
+      <line num="108" count="1" type="stmt"/>
+      <line num="113" count="281" type="stmt"/>
+      <line num="130" count="289" type="stmt"/>
+      <line num="131" count="289" type="stmt"/>
+      <line num="133" count="289" type="stmt"/>
+      <line num="134" count="303" type="stmt"/>
+      <line num="135" count="303" type="stmt"/>
+      <line num="136" count="303" type="stmt"/>
+      <line num="139" count="289" type="stmt"/>
+      <line num="153" count="11" type="stmt"/>
+      <line num="154" count="11" type="stmt"/>
+      <line num="155" count="352" type="stmt"/>
+      <line num="157" count="11" type="stmt"/>
+      <line num="162" count="4" type="stmt"/>
+    </file>
+    <file name="timestamp.js" path="/Users/david/src/opendataformats/opentimestamp/src/javascript/opentimestamp/lib/timestamp.js">
+      <metrics statements="105" coveredstatements="105" conditionals="24" coveredconditionals="24" methods="28" coveredmethods="28"/>
+      <line num="9" count="2" type="stmt"/>
+      <line num="11" count="2" type="stmt"/>
+      <line num="12" count="2" type="stmt"/>
+      <line num="13" count="2" type="stmt"/>
+      <line num="15" count="2" type="stmt"/>
+      <line num="16" count="2" type="stmt"/>
+      <line num="17" count="2" type="stmt"/>
+      <line num="18" count="2" type="stmt"/>
+      <line num="19" count="2" type="stmt"/>
+      <line num="21" count="2" type="stmt"/>
+      <line num="25" count="2" type="stmt"/>
+      <line num="26" count="2" type="stmt"/>
+      <line num="27" count="16" type="stmt"/>
+      <line num="32" count="2" type="stmt"/>
+      <line num="33" count="2" type="stmt"/>
+      <line num="34" count="10" type="stmt"/>
+      <line num="44" count="20" type="cond" truecount="4" falsecount="0"/>
+      <line num="45" count="1" type="stmt"/>
+      <line num="50" count="19" type="stmt"/>
+      <line num="52" count="19" type="stmt"/>
+      <line num="53" count="19" type="stmt"/>
+      <line num="54" count="19" type="stmt"/>
+      <line num="55" count="19" type="stmt"/>
+      <line num="66" count="14" type="stmt"/>
+      <line num="68" count="14" type="stmt"/>
+      <line num="69" count="14" type="stmt"/>
+      <line num="71" count="1" type="stmt"/>
+      <line num="74" count="13" type="stmt"/>
+      <line num="86" count="6" type="stmt"/>
+      <line num="87" count="3" type="stmt"/>
+      <line num="89" count="6" type="cond" truecount="2" falsecount="0"/>
+      <line num="90" count="3" type="stmt"/>
+      <line num="93" count="3" type="stmt"/>
+      <line num="94" count="3" type="stmt"/>
+      <line num="95" count="3" type="stmt"/>
+      <line num="106" count="10" type="stmt"/>
+      <line num="107" count="18" type="stmt"/>
+      <line num="111" count="18" type="stmt"/>
+      <line num="114" count="10" type="cond" truecount="2" falsecount="0"/>
+      <line num="115" count="1" type="stmt"/>
+      <line num="118" count="9" type="stmt"/>
+      <line num="129" count="15" type="cond" truecount="2" falsecount="0"/>
+      <line num="142" count="52" type="stmt"/>
+      <line num="147" count="52" type="cond" truecount="2" falsecount="0"/>
+      <line num="148" count="48" type="stmt"/>
+      <line num="151" count="52" type="cond" truecount="2" falsecount="0"/>
+      <line num="152" count="48" type="stmt"/>
+      <line num="155" count="52" type="stmt"/>
+      <line num="156" count="52" type="stmt"/>
+      <line num="167" count="32" type="cond" truecount="2" falsecount="0"/>
+      <line num="179" count="6" type="stmt"/>
+      <line num="180" count="13" type="stmt"/>
+      <line num="190" count="3" type="stmt"/>
+      <line num="202" count="9" type="stmt"/>
+      <line num="203" count="6" type="stmt"/>
+      <line num="204" count="6" type="stmt"/>
+      <line num="206" count="6" type="stmt"/>
+      <line num="207" count="6" type="stmt"/>
+      <line num="218" count="2" type="stmt"/>
+      <line num="246" count="1" type="stmt"/>
+      <line num="247" count="1" type="stmt"/>
+      <line num="248" count="1" type="stmt"/>
+      <line num="249" count="1" type="stmt"/>
+      <line num="250" count="1" type="stmt"/>
+      <line num="251" count="1" type="stmt"/>
+      <line num="252" count="1" type="stmt"/>
+      <line num="253" count="1" type="stmt"/>
+      <line num="254" count="1" type="stmt"/>
+      <line num="256" count="1" type="stmt"/>
+      <line num="266" count="2" type="stmt"/>
+      <line num="278" count="1" type="stmt"/>
+      <line num="289" count="2" type="stmt"/>
+      <line num="299" count="1" type="stmt"/>
+      <line num="312" count="3" type="stmt"/>
+      <line num="320" count="3" type="cond" truecount="2" falsecount="0"/>
+      <line num="321" count="2" type="stmt"/>
+      <line num="324" count="3" type="stmt"/>
+      <line num="325" count="6" type="stmt"/>
+      <line num="327" count="6" type="stmt"/>
+      <line num="328" count="6" type="stmt"/>
+      <line num="332" count="6" type="stmt"/>
+      <line num="333" count="6" type="stmt"/>
+      <line num="336" count="6" type="stmt"/>
+      <line num="338" count="6" type="stmt"/>
+      <line num="339" count="6" type="stmt"/>
+      <line num="340" count="30" type="stmt"/>
+      <line num="341" count="30" type="stmt"/>
+      <line num="342" count="30" type="cond" truecount="2" falsecount="0"/>
+      <line num="346" count="30" type="cond" truecount="2" falsecount="0"/>
+      <line num="347" count="18" type="stmt"/>
+      <line num="350" count="30" type="stmt"/>
+      <line num="354" count="6" type="stmt"/>
+      <line num="356" count="6" type="stmt"/>
+      <line num="359" count="3" type="stmt"/>
+      <line num="369" count="1" type="stmt"/>
+      <line num="380" count="3" type="stmt"/>
+      <line num="396" count="8" type="stmt"/>
+      <line num="398" count="8" type="cond" truecount="2" falsecount="0"/>
+      <line num="399" count="1" type="stmt"/>
+      <line num="402" count="7" type="stmt"/>
+      <line num="403" count="4" type="stmt"/>
+      <line num="404" count="4" type="stmt"/>
+      <line num="405" count="4" type="stmt"/>
+      <line num="416" count="24" type="stmt"/>
+      <line num="420" count="2" type="stmt"/>
+    </file>
+  </project>
+</coverage>

@@ -1,0 +1,20 @@
+//
+// Open Timestamp data models for storing attestations.
+//
+// License: Unlicense https://unlicense.org
+//
+syntax = "proto3";
+
+package opentimestamp.v1;
+
+
+// The status of the attestation as reported by the calendar server.
+enum AttestationStatus {
+  ATTESTATION_STATUS_INVALID = 0;
+
+  ATTESTATION_STATUS_UNKNOWN = 1;
+  ATTESTATION_STATUS_PENDING = 2;
+
+  ATTESTATION_STATUS_BITCOIN = 3;
+  ATTESTATION_STATUS_LITECOIN = 4;
+}

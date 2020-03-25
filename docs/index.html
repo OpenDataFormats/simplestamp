@@ -1,0 +1,92 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+
+    <title>
+      OpenTimestamp - Documentation
+    </title>
+
+    <link href="https://stackpath.bootstrapcdn.com/bootswatch/4.4.1/materia/bootstrap.min.css"
+      rel="stylesheet"
+      integrity="sha384-1tymk6x9Y5K+OF0tlmG2fDRcn67QGzBkiM3IgtJ3VrtGrIi5ryhHjKjeeS60f1FA"
+      crossorigin="anonymous">
+    <link rel="stylesheet" type="text/css" href="static/css/docs.css">
+
+    <link rel="apple-touch-icon" sizes="72x72" href="/static/favicon/apple-icon-72x72.png">
+    <link rel="apple-touch-icon" sizes="144x144" href="/static/favicon/apple-icon-144x144.png">
+    <link rel="apple-touch-icon" sizes="180x180" href="/static/favicon/apple-icon-180x180.png">
+    <link rel="icon" type="image/png" sizes="192x192"  href="/static/favicon/android-icon-192x192.png">
+    <link rel="icon" type="image/png" sizes="32x32" href="/static/favicon/favicon-32x32.png">
+    <link rel="icon" type="image/png" sizes="96x96" href="/static/favicon/favicon-96x96.png">
+    <link rel="icon" type="image/png" sizes="16x16" href="/static/favicon/favicon-16x16.png">
+    <link rel="manifest" href="/static/manifest.json">
+    <meta name="msapplication-TileColor" content="#ffffff">
+    <meta name="msapplication-TileImage" content="/static/favicon/ms-icon-144x144.png">
+    <meta name="theme-color" content="#ffffff">
+
+    <meta property="og:image" content="/static/favicon/apple-icon-180x180.png">
+    <meta property="og:image:type" content="image/png" />
+    <meta property="og:image:width" content="180" />
+    <meta property="og:image:height" content="180" />
+  </head>
+  <body>
+    <div class="container my-5">
+      <h1>
+        OpenTimestamp
+      </h1>
+
+      <p>
+        ECMAScript/JS 6 Node library for creating compact, portable <a href="https://en.wikipedia.org/wiki/OpenTimestamps">Open Timestamps</a> attestations.
+      </p>
+
+      <div class="d-flex justify-content-around my-5">
+        <a href="jsdocs/index.html" class="btn btn-primary">
+          JSDocs
+        </a>
+
+        <a href="coverage/lcov-report/index.html" class="btn btn-primary">
+          Code Coverage
+        </a>
+      </div>
+
+      <h2>
+        OpenTimestamps
+      </h2>
+
+      <p>Peter Todd has an excellent and thorough description of the benefits and implementation in his blog post <a href="https://petertodd.org/2016/opentimestamps-announcement">OpenTimestamps: Scalable, Trust-Minimized, Distributed Timestamping with Bitcoin</a>. Along with the <a href="https://opentimestamps.org/">OpenTimestamps website</a> provide the best background information.</p>
+
+      <h2>
+        Motivation
+      </h2>
+
+      <p>
+        Blockchain technology offers a multitude of benefits, the most appealing being the **immutable proof at a point in time**. The primary use being cryptocurrency ownership, the second being the state machine offered by smart contracts.
+      </p>
+
+      <p>
+        Most companies and projects find immutable proof to be the most appealing aspect, and aren't as interested in the currency or contract components.
+      </p>
+
+      <h2>
+        Implementation
+      </h2>
+
+      <p>
+        This implementation is client only, using a highly extensible and portable data model. The underlying data is stored in a series of <a href="https://developers.google.com/protocol-buffers">Protocol Buffers</a>, which allow for the structure and binary format to be extended easily.
+      </p>
+
+      <p>
+        Protocol Buffers are also language agnostic, with the ability to auto generate code to read, write, and manipulate the data models in most of the top tier programming languages; **Javascript, Java, Python, Objective-C, C++, Dart, Go, Ruby, and C#**. This means the timestamp binary data will be able to be handled as widely as possible.
+      </p>
+
+    </div>
+
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.4.1/jquery.min.js"></script>
+    <script
+      src="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/js/bootstrap.bundle.min.js"
+      integrity="sha384-xrRywqdh3PHs8keKZN+8zzc5TX0GRTLCcmivcbNJWm2rs5C8PRhcEn3czEjhAO9o"
+      crossorigin="anonymous"></script>
+  </body>
+</html>

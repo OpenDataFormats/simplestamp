@@ -1,0 +1,38 @@
+//
+// Open Timestamp data models for storing attestations.
+//
+// Identity of the person creating the Open Timestamp. Modeled after the identity
+// information for creating a new SSL certificate.
+//
+// License: Unlicense https://unlicense.org
+//
+syntax = "proto3";
+
+package opentimestamp.v1;
+
+
+message Identity {
+  // 2 letter country code/name
+  string country_code = 1;
+
+  // Full name of state or province
+  string state = 2;
+
+  // City or locality name
+  string city = 3;
+
+  // Organization name
+  string organization = 4;
+
+  // Organization unit or section
+  string section = 5;
+
+  // Common name, fully qualified host name
+  string common_name = 6;
+
+  // Email address
+  string email = 7;
+
+  // Full name of the person
+  string full_name = 8;
+}

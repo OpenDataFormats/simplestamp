@@ -1,0 +1,43 @@
+//
+// Open Timestamp data models for storing attestations.
+//
+// License: Unlicense https://unlicense.org
+//
+syntax = "proto3";
+
+package opentimestamp.v1;
+
+import "opentimestamp/v1/operation.proto";
+import "opentimestamp/v1/status.proto";
+
+
+// An Attestation represents the history and details of the submission of the hash + nonce
+// defined in the Timestamp it is encapsulated in.
+message Attestation {
+  // The fully qualified URL of the calendar server the stamping was made on.
+  string calendar_url = 1;
+
+  // UNIX timestamp of when the call to the calendar server was made.
+  uint32 submitted = 2;
+
+  // The sequence of operations the calendar server responded with,
+  // performed on the original hash to get the timestamp URL on the
+  // server for status.
+  repeated opentimestamp.v1.Operation operations = 3;
+
+  AttestationStatus status = 4;
+
+  // If the attestation indicates it is on chain
+  uint32 block_height = 5;
+
+  // The merkle root of the block containing the transaction with verification
+  bytes block_merkle_root = 6;
+
+  // The merkle root of all of the hashes committed to the Open Timestamp server.
+  // This is committed to the transaction on chain as an OP_RETURN
+  bytes timestamp_merkle_root = 7;
+
+  // The transaction ID of the on chain transaction holding the merkle root of
+  // the calendar server data being attested.
+  bytes transaction_id = 8;
+}

@@ -1,0 +1,30 @@
+//
+// Open Timestamp data models for storing attestations.
+//
+// Basic location data for where the Timestamp was created.
+//
+// License: Unlicense https://unlicense.org
+//
+syntax = "proto3";
+
+package opentimestamp.v1;
+
+
+message Location {
+  // Latitude and longitude in the decimal notation format
+  double latitude = 1;
+  double longitude = 2;
+
+  // Elevation above or below sea level in meters
+  double altitude = 3;
+
+  // If the device determining location reports the accuracy
+  float accuracy_meters = 4;
+
+  // Relative angle at which the trajectory is headed, from 0 to 360, with
+  // 0 being true north and degrees being clockwise
+  float direction = 5;
+
+  // Speed in meters/second
+  float velocity = 6;
+}
