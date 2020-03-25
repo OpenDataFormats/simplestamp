@@ -1,5 +1,7 @@
 **_Note: Not ready for production use, still in beta and requires further testing._**
 
+[![Build Status](https://travis-ci.com/OpenDataFormats/opentimestamp.svg?branch=master)](https://travis-ci.com/OpenDataFormats/opentimestamp)
+
 # OpenTimestamp
 
 ECMAScript/JS 6 Node library for creating compact, portable [Open Timestamps](https://en.wikipedia.org/wiki/OpenTimestamps) attestations.
