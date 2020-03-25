@@ -6,5 +6,8 @@ before_install:
   - cd src/javascript/opentimestamp
   - npm install
 
+before_script:
+  - cd ../../../
+
 script:
   - ./bin/run.tests.sh
