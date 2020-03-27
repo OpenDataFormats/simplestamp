@@ -15,6 +15,7 @@ const Parser = require('./parser');
 const { Attestation } = require('../models/opentimestamp/v1/attestation_pb');
 const { AttestationStatus } = require('../models/opentimestamp/v1/status_pb');
 const { Identity } = require('../models/opentimestamp/v1/identity_pb');
+const { Location } = require('../models/opentimestamp/v1/location_pb');
 const { OpenTimestamp } = require('../models/opentimestamp/v1/timestamp_pb');
 const { OperationType } = require('../models/opentimestamp/v1/operation_pb');
 
@@ -254,6 +255,35 @@ class Timestamp {
     identity.setFullName(fullName);
 
     this.timestamp_.setIdentity(identity);
+  }
+
+
+  /**
+   * Set the location and trajectory of where this Timestamp was created.
+   *
+   * @param {number} latitude
+   * @param {number} longitude
+   * @param {number} altitude
+   * @param {number} accuracy
+   * @param {number} direction
+   * @param {number} velocity
+   */
+  setLocation(
+    latitude,
+    longitude,
+    altitude,
+    accuracy,
+    direction,
+    velocity,
+  ) {
+    const location = new Location();
+    location.setLatitude(latitude);
+    location.setLongitude(longitude);
+    location.setAltitude(altitude);
+    location.setAccuracyMeters(accuracy);
+    location.setDirection(direction);
+    location.setVelocity(velocity);
+    this.timestamp_.setLocation(location);
   }
 
 

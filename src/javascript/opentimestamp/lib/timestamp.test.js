@@ -207,3 +207,26 @@ describe('Timestamp: Empty, unstamped, state changes with pending attestation', 
     expect(t.isStamped()).toBe(true);
   });
 });
+
+
+describe('Timestamp: Empty, unstamped, state changes with pending attestation', () => {
+  test('State moves from false to true', () => {
+    const t = new Timestamp(Buffer.alloc(32, 7));
+    t.setLocation(
+      180 - Math.random() * 180,
+      180 - Math.random() * 180,
+      Math.random() * 10000,
+      Math.random(),
+      Math.random() * 360,
+      Math.random() * 100,
+    );
+    const l = t.timestamp_.getLocation();
+
+    expect(typeof l.getLatitude()).toBe('number');
+    expect(typeof l.getLongitude()).toBe('number');
+    expect(typeof l.getAltitude()).toBe('number');
+    expect(typeof l.getAccuracyMeters()).toBe('number');
+    expect(typeof l.getDirection()).toBe('number');
+    expect(typeof l.getVelocity()).toBe('number');
+  });
+});

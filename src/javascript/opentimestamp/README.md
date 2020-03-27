@@ -103,6 +103,8 @@ The hash that is sent to the calendar servers to be included is the combination 
 3. (_optional_) Source, the filename, URL, etc to the data
 4. (_optional_) Identity, the company name, division, email address, etc of the person creating the timestamp
 
+Those values are concatenated in binary, in that order, and then run through SHA256 twice, to generate the hash sent to the calendar servers.
+
 ## Using
 
 ### Creating a new Timestamp
