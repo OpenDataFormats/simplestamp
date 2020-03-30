@@ -1,6 +1,6 @@
 {
   "name": "opentimestamp",
-  "version": "0.1.6",
+  "version": "0.1.8",
   "description": "ECMAScript/JS 6 Node library for creating compact, portable Open Timestamps attestations.",
   "keywords": [
     "opentimestamps",

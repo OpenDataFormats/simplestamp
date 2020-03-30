@@ -139,7 +139,7 @@ describe('Timestamp: Setting rich details are included in the digest hash', () =
 
 
   test('Adding identity information produces a valid digest', () => {
-    const t = Timestamp.fromBinary(binTimestamp1);
+    const t = Timestamp.fromBinary(binTimestamp0);
 
     t.setIdentity(
       'US',
@@ -156,6 +156,16 @@ describe('Timestamp: Setting rich details are included in the digest hash', () =
 
     const json = t.toJSON();
     expect(json.identity.section).toBe('Engineering');
+  });
+
+
+  test('Adding identity after stamping throws an error', () => {
+    expect(() => {
+      const t = Timestamp.fromBinary(binTimestamp1);
+      t.setIdentity(
+        'This should throw',
+      );
+    }).toThrow();
   });
 });
 
@@ -209,8 +219,8 @@ describe('Timestamp: Empty, unstamped, state changes with pending attestation', 
 });
 
 
-describe('Timestamp: Empty, unstamped, state changes with pending attestation', () => {
-  test('State moves from false to true', () => {
+describe('Timestamp: Location data is set correctly', () => {
+  test('Wrapper method sets underlying values.', () => {
     const t = new Timestamp(Buffer.alloc(32, 7));
     t.setLocation(
       180 - Math.random() * 180,
@@ -228,5 +238,30 @@ describe('Timestamp: Empty, unstamped, state changes with pending attestation', 
     expect(typeof l.getAccuracyMeters()).toBe('number');
     expect(typeof l.getDirection()).toBe('number');
     expect(typeof l.getVelocity()).toBe('number');
+  });
+
+
+  test('Setting location after stamping throws an error', () => {
+    expect(() => {
+      const t = Timestamp.fromBinary(binTimestamp1);
+      t.setLocation(
+        3.14159,
+      );
+    }).toThrow();
+  });
+
+
+  test('Setting location information produces a valid digest', () => {
+    const t = Timestamp.fromBinary(binTimestamp0);
+    t.setLocation(
+      3.14159,
+      3.14159,
+    );
+    expect(t.getDigestHash().toString('hex'))
+      .toBe('32635c36c77540d5c0a233e821af91f9322014bf6ce1497921edb18982e81f09');
+
+    const json = t.toJSON();
+    expect(json.location.latitude).toBe(3.14159);
+    expect(json.location.altitude).toBe(0);
   });
 });

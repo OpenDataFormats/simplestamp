@@ -12,6 +12,9 @@ ECMAScript/JS 6 Node library for creating compact, portable [Open Timestamps](ht
 * [Agnostic](#agnostic)
 * [Data Model](#data-model)
   + [`opentimestamp.v1.Timestamp`](#-opentimestampv1timestamp-)
+  + [`opentimestamp.v1.Attestation`](#-opentimestampv1attestation-)
+  + [`opentimestamp.v1.Identity`](#-opentimestampv1identity-)
+  + [`opentimestamp.v1.Location`](#-opentimestampv1location-)
   + [Computing the hash](#computing-the-hash)
 * [Using](#using)
   + [Creating a new Timestamp](#creating-a-new-timestamp)
@@ -94,6 +97,52 @@ message OpenTimestamp {
 }
 ```
 
+The structure of the components of a Timestamp are in the following protobuf definitions:
+
+### `opentimestamp.v1.Attestation`
+
+Defined in [attestation.proto](src/protobuf/opentimestamp/v1/attestation.proto)
+
+An Attestation is created for each calendar server the hash is sent to. It will contain the details of the server, including the operations the server reported to be performed on the hash to derive the proof.
+
+### `opentimestamp.v1.Identity`
+
+Defined in [indentity.proto](src/protobuf/opentimestamp/v1/identity.proto)
+
+(optional) Identity of the person who created and submitted the Timestamp. The fields mimic those in an SSL certificate; country code, state/province, city, organization, section/division, common name, email address, and full name.
+
+This can be set during creation by calling `.setIdentity()`.
+
+```javascript
+timestamp.setIdentity(
+  'US',
+  'NY',
+  'New York',
+  'My Company',
+  'Engineering',
+  'Corp Eng',
+  'eng@example.com',
+  'John Smith',
+);
+```
+
+Identity information needs to be set before `.stamp()` is called as the idenity information is used to compute the digest hash sent to the calendar servers.
+
+### `opentimestamp.v1.Location`
+
+Defined in [location.proto](src/protobuf/opentimestamp/v1/location.proto)
+
+(optional) The location of where the Timestamp was created, in latitude and longitude, with additional fields for altitude and trajectory.
+
+This can be set during creation by calling `.setLocation()`.
+
+```javascript
+timestamp.setLocation(
+  40.73111,
+  -73.99689,
+);
+```
+
 ### Computing the hash
 
 The hash that is sent to the calendar servers to be included is the combination of the following:
@@ -102,6 +151,7 @@ The hash that is sent to the calendar servers to be included is the combination 
 2. Nonce, random data to make timestamps of the same data unique
 3. (_optional_) Source, the filename, URL, etc to the data
 4. (_optional_) Identity, the company name, division, email address, etc of the person creating the timestamp
+5. (_optional_) Location, the GPS and trajectory of the Timestamp.
 
 Those values are concatenated in binary, in that order, and then run through SHA256 twice, to generate the hash sent to the calendar servers.
 
@@ -115,6 +165,8 @@ const OpenTimestamp = require('opentimestamp');
 // Compute the hash of the data
 
 const timestamp = new OpenTimestamp(hash);
+
+// The following fields are optional
 timestamp.setSource('Filename, URL, etc');
 timestamp.setIdentity(
   'US',
@@ -126,12 +178,18 @@ timestamp.setIdentity(
   'me@example.com',
   'John Smith',
 );
+timestamp.setLocation(
+  40.73111,
+  -73.99689,
+);
+
+// Sends the digested hash to the calendar server for attestation
 timestamp.stamp();
 ```
 
 ### Updating a Timestamp
 
-After some time has passed, the calendar server will submit a transaction to the blockchain. The additional data for the attestation can be downloaded, parsed, and added to the Timestamp by running:
+After some time has passed, the calendar server will submit a transaction to the blockchain. The additional data for the attestation will be downloaded, parsed, and added to the Timestamp by running:
 
 ```javascript
 timestamp.update();

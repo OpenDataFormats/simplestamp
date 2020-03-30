@@ -153,6 +153,10 @@ class Timestamp {
       components.push(Buffer.from(this.timestamp_.getIdentity().serializeBinary()));
     }
 
+    if (this.timestamp_.hasLocation()) {
+      components.push(Buffer.from(this.timestamp_.getLocation().serializeBinary()));
+    }
+
     const combined = Buffer.concat(components);
     return Execution.sha256(Execution.sha256(combined));
   }
@@ -244,6 +248,10 @@ class Timestamp {
     email,
     fullName,
   ) {
+    if (this.isStamped()) {
+      throw new Error('Timestamp already sent for attestation, cannot set the identity.');
+    }
+
     const identity = new Identity();
     identity.setCountryCode(countryCode);
     identity.setState(state);
@@ -276,6 +284,10 @@ class Timestamp {
     direction,
     velocity,
   ) {
+    if (this.isStamped()) {
+      throw new Error('Timestamp already sent for attestation, cannot set the location.');
+    }
+
     const location = new Location();
     location.setLatitude(latitude);
     location.setLongitude(longitude);
@@ -349,6 +361,10 @@ class Timestamp {
 
     if (this.timestamp_.hasIdentity()) {
       json.identity = this.timestamp_.getIdentity().toObject();
+    }
+
+    if (this.timestamp_.hasLocation()) {
+      json.location = this.timestamp_.getLocation().toObject();
     }
 
     this.timestamp_.getAttestationsList().forEach((attestation) => {
