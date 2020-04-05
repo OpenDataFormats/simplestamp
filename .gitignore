@@ -21,6 +21,9 @@ lib-cov
 # nyc test coverage
 .nyc_output
 
+# Coveralls config
+.coveralls.yml
+
 # Grunt intermediate storage (https://gruntjs.com/creating-plugins#storing-task-files)
 .grunt
 

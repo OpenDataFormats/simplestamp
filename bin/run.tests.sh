@@ -3,10 +3,10 @@ source $(dirname ${0})/base.sh
 
 info "Running all tests"
 
+cd $SRC_JS_OPENTIMESTAMP
 
 info "Checking code lint"
 
-cd $SRC_JS_OPENTIMESTAMP
 npm run lint
 
 

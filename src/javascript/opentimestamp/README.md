@@ -2,6 +2,8 @@
 
 [![Build Status](https://travis-ci.com/OpenDataFormats/opentimestamp.svg?branch=master)](https://travis-ci.com/OpenDataFormats/opentimestamp)
 
+[![Coverage Status](https://coveralls.io/repos/github/OpenDataFormats/opentimestamp/badge.svg?branch=master)](https://coveralls.io/github/OpenDataFormats/opentimestamp?branch=master)
+
 # OpenTimestamp
 
 ECMAScript/JS 6 Node library for creating compact, portable [Open Timestamps](https://en.wikipedia.org/wiki/OpenTimestamps) attestations.
@@ -115,14 +117,14 @@ This can be set during creation by calling `.setIdentity()`.
 
 ```javascript
 timestamp.setIdentity(
-  'US',
-  'NY',
-  'New York',
-  'My Company',
-  'Engineering',
-  'Corp Eng',
-  'eng@example.com',
-  'John Smith',
+  'US',               // Country Code
+  'NY',               // State/Province
+  'New York',         // City
+  'My Company',       // Organization
+  'Engineering',      // Section/Division
+  'Corp Eng',         // Common Name
+  'eng@example.com',  // Email Address
+  'John Smith',       // Full Name
 );
 ```
 
@@ -138,8 +140,12 @@ This can be set during creation by calling `.setLocation()`.
 
 ```javascript
 timestamp.setLocation(
-  40.73111,
-  -73.99689,
+  40.73111,   // Latitude
+  -73.99689,  // Longitude
+  120,        // Altitude, meters
+  10,         // Accuracy, meters
+  217.39,     // Direction, degrees
+  42,         // Velocity
 );
 ```
 
@@ -195,6 +201,25 @@ After some time has passed, the calendar server will submit a transaction to the
 timestamp.update();
 ```
 
+### Saving a Timestamp
+
+Serialize the internal Timestamp protocol buffer to portable binary and save the data to a storage layer of choice; filesystem, database, etc.
+
+```javascript
+const /** @type {Buffer} */ data = timestamp.toBinary();
+fs.writeFileSync('./myfile.timestamp', data);
+```
+
+### Loading a Timestamp
+
+Loading the binary representation into the wrapped `OpenTimestamp` class is done by the static `.fromBinary` class method.
+
+```javascript
+const OpenTimestamp = require('opentimestamp');
+
+const data = fs.readFileSync('./myfile.timestamp');
+const timestamp = OpenTimestamp.fromBinary(data);
+```
 
 ## Testing
 
