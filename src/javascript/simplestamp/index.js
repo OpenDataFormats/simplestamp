@@ -1,5 +1,5 @@
 /**
- * @fileoverview OpenTimestamp - ECMAScript/JS 6 Node library for creating
+ * @fileoverview SimpleStamp - ECMAScript/JS 6 Node library for creating
  * compact, portable Open Timestamps attestations.
  *
  * @author davidarvan

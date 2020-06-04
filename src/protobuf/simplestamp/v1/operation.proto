@@ -1,13 +1,13 @@
 //
-// Open Timestamp data models for storing attestations.
+// SimpleStamp data models for storing attestations.
 //
 // License: Unlicense https://unlicense.org
 //
 syntax = "proto3";
 
-package opentimestamp.v1;
+package simplestamp.v1;
 
-import "opentimestamp/v1/status.proto";
+import "simplestamp/v1/status.proto";
 
 
 // The type of operation to perform. Enum values correspond to the wire format
@@ -34,7 +34,7 @@ message Operation {
   bytes value = 2;
 
   // (optional) An update to the Attestation's status
-  opentimestamp.v1.AttestationStatus status = 3;
+  simplestamp.v1.AttestationStatus status = 3;
 
   // The following values act on the Attestation in an "operational transform" way
 

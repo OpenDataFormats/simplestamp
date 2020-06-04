@@ -1,8 +1,8 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<coverage generated="1586091106317" clover="3.2.0">
-  <project timestamp="1586091106317" name="All files">
+<coverage generated="1591286309447" clover="3.2.0">
+  <project timestamp="1591286309447" name="All files">
     <metrics statements="259" coveredstatements="259" conditionals="77" coveredconditionals="77" methods="47" coveredmethods="47" elements="383" coveredelements="383" complexity="0" loc="259" ncloc="259" packages="1" files="4" classes="4"/>
-    <file name="calendar.js" path="/Users/david/src/opendataformats/opentimestamp/src/javascript/opentimestamp/lib/calendar.js">
+    <file name="calendar.js" path="/Users/david/src/opendataformats/simplestamp/src/javascript/simplestamp/lib/calendar.js">
       <metrics statements="34" coveredstatements="34" conditionals="4" coveredconditionals="4" methods="9" coveredmethods="9"/>
       <line num="11" count="2" type="stmt"/>
       <line num="12" count="2" type="stmt"/>
@@ -39,7 +39,7 @@
       <line num="131" count="3" type="stmt"/>
       <line num="184" count="2" type="stmt"/>
     </file>
-    <file name="execution.js" path="/Users/david/src/opendataformats/opentimestamp/src/javascript/opentimestamp/lib/execution.js">
+    <file name="execution.js" path="/Users/david/src/opendataformats/simplestamp/src/javascript/simplestamp/lib/execution.js">
       <metrics statements="53" coveredstatements="53" conditionals="24" coveredconditionals="24" methods="4" coveredmethods="4"/>
       <line num="8" count="3" type="stmt"/>
       <line num="10" count="3" type="stmt"/>
@@ -95,7 +95,7 @@
       <line num="142" count="347" type="stmt"/>
       <line num="147" count="3" type="stmt"/>
     </file>
-    <file name="parser.js" path="/Users/david/src/opendataformats/opentimestamp/src/javascript/opentimestamp/lib/parser.js">
+    <file name="parser.js" path="/Users/david/src/opendataformats/simplestamp/src/javascript/simplestamp/lib/parser.js">
       <metrics statements="50" coveredstatements="50" conditionals="17" coveredconditionals="17" methods="5" coveredmethods="5"/>
       <line num="9" count="4" type="stmt"/>
       <line num="10" count="4" type="stmt"/>
@@ -148,7 +148,7 @@
       <line num="157" count="11" type="stmt"/>
       <line num="162" count="4" type="stmt"/>
     </file>
-    <file name="timestamp.js" path="/Users/david/src/opendataformats/opentimestamp/src/javascript/opentimestamp/lib/timestamp.js">
+    <file name="timestamp.js" path="/Users/david/src/opendataformats/simplestamp/src/javascript/simplestamp/lib/timestamp.js">
       <metrics statements="122" coveredstatements="122" conditionals="32" coveredconditionals="32" methods="29" coveredmethods="29"/>
       <line num="9" count="2" type="stmt"/>
       <line num="11" count="2" type="stmt"/>

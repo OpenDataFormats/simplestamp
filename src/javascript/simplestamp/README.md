@@ -1,10 +1,11 @@
 **_Note: Not ready for production use, still in beta and requires further testing._**
 
-[![Build Status](https://travis-ci.com/OpenDataFormats/opentimestamp.svg?branch=master)](https://travis-ci.com/OpenDataFormats/opentimestamp)
+[![Build Status](https://travis-ci.com/OpenDataFormats/simplestamp.svg?branch=master)](https://travis-ci.com/OpenDataFormats/simplestamp)
 
-[![Coverage Status](https://coveralls.io/repos/github/OpenDataFormats/opentimestamp/badge.svg?branch=master)](https://coveralls.io/github/OpenDataFormats/opentimestamp?branch=master)
+[![Coverage Status](https://coveralls.io/repos/github/OpenDataFormats/simplestamp/badge.svg?branch=master)](https://coveralls.io/github/OpenDataFormats/simplestamp?branch=master)
 
-# OpenTimestamp
+
+# SimpleStamp
 
 ECMAScript/JS 6 Node library for creating compact, portable [Open Timestamps](https://en.wikipedia.org/wiki/OpenTimestamps) attestations.
 
@@ -13,10 +14,10 @@ ECMAScript/JS 6 Node library for creating compact, portable [Open Timestamps](ht
 * [Implementation](#implementation)
 * [Agnostic](#agnostic)
 * [Data Model](#data-model)
-  + [`opentimestamp.v1.Timestamp`](#-opentimestampv1timestamp-)
-  + [`opentimestamp.v1.Attestation`](#-opentimestampv1attestation-)
-  + [`opentimestamp.v1.Identity`](#-opentimestampv1identity-)
-  + [`opentimestamp.v1.Location`](#-opentimestampv1location-)
+  + [`simplestamp.v1.Timestamp`](#-simplestampv1timestamp-)
+  + [`simplestamp.v1.Attestation`](#-simplestampv1attestation-)
+  + [`simplestamp.v1.Identity`](#-simplestampv1identity-)
+  + [`simplestamp.v1.Location`](#-simplestampv1location-)
   + [Computing the hash](#computing-the-hash)
 * [Using](#using)
   + [Creating a new Timestamp](#creating-a-new-timestamp)
@@ -41,20 +42,20 @@ Protocol Buffers are also language agnostic, with the ability to auto generate c
 
 ## Agnostic
 
-OpenTimestamp is agnostic to the storage of the Timestamp itself. Once generated, it can be stored in a file, database, etc by calling `Timestamp.toBinary()` and saving the `Buffer` data. The data can then be reloaded with `Timestamp.fromBinary(Buffer)`.
+SimpleStamp is agnostic to the storage of the Timestamp itself. Once generated, it can be stored in a file, database, etc by calling `Timestamp.toBinary()` and saving the `Buffer` data. The data can then be reloaded with `Timestamp.fromBinary(Buffer)`.
 
-OpenTimestamp also does not dictate that the Timestamp be of a file, or what method the hash was generated from.
+SimpleStamp also does not dictate that the Timestamp be of a file, or what method the hash was generated from.
 
 ## Data Model
 
 A `Timestamp` has the following fields, as defined in the protobuf.
 
-### `opentimestamp.v1.Timestamp`
+### `simplestamp.v1.Timestamp`
 
-Defined in [timestamp.proto](src/protobuf/opentimestamp/v1/timestamp.proto)
+Defined in [timestamp.proto](src/protobuf/simplestamp/v1/timestamp.proto)
 
 ```
-message OpenTimestamp {
+message SimpleStamp {
   // The binary hash of the data this timestamp is for.
   // Most likely the SHA256 of a file.
   bytes hash = 1;
@@ -65,7 +66,7 @@ message OpenTimestamp {
   bytes nonce = 2;
 
   // The attestations made
-  repeated opentimestamp.v1.Attestation attestations = 3;
+  repeated simplestamp.v1.Attestation attestations = 3;
 
   // The UNIX timestamp of when this was originally created
   uint32 created = 4;
@@ -80,10 +81,10 @@ message OpenTimestamp {
   string source = 5;
 
   // Identity of the organization and/or person stamping
-  opentimestamp.v1.Identity identity = 6;
+  simplestamp.v1.Identity identity = 6;
 
   // Where the timestamp was created and it's trajectory if moving
-  opentimestamp.v1.Location location = 7;
+  simplestamp.v1.Location location = 7;
 
   // Assorted free form details for the creator to describe the purpose or intent
   string description = 8;
@@ -101,15 +102,15 @@ message OpenTimestamp {
 
 The structure of the components of a Timestamp are in the following protobuf definitions:
 
-### `opentimestamp.v1.Attestation`
+### `simplestamp.v1.Attestation`
 
-Defined in [attestation.proto](src/protobuf/opentimestamp/v1/attestation.proto)
+Defined in [attestation.proto](src/protobuf/simplestamp/v1/attestation.proto)
 
 An Attestation is created for each calendar server the hash is sent to. It will contain the details of the server, including the operations the server reported to be performed on the hash to derive the proof.
 
-### `opentimestamp.v1.Identity`
+### `simplestamp.v1.Identity`
 
-Defined in [indentity.proto](src/protobuf/opentimestamp/v1/identity.proto)
+Defined in [indentity.proto](src/protobuf/simplestamp/v1/identity.proto)
 
 (optional) Identity of the person who created and submitted the Timestamp. The fields mimic those in an SSL certificate; country code, state/province, city, organization, section/division, common name, email address, and full name.
 
@@ -130,9 +131,9 @@ timestamp.setIdentity(
 
 Identity information needs to be set before `.stamp()` is called as the idenity information is used to compute the digest hash sent to the calendar servers.
 
-### `opentimestamp.v1.Location`
+### `simplestamp.v1.Location`
 
-Defined in [location.proto](src/protobuf/opentimestamp/v1/location.proto)
+Defined in [location.proto](src/protobuf/simplestamp/v1/location.proto)
 
 (optional) The location of where the Timestamp was created, in latitude and longitude, with additional fields for altitude and trajectory.
 
@@ -166,11 +167,11 @@ Those values are concatenated in binary, in that order, and then run through SHA
 ### Creating a new Timestamp
 
 ```javascript
-const OpenTimestamp = require('opentimestamp');
+const SimpleStamp = require('simplestamp');
 
 // Compute the hash of the data
 
-const timestamp = new OpenTimestamp(hash);
+const timestamp = new SimpleStamp(hash);
 
 // The following fields are optional
 timestamp.setSource('Filename, URL, etc');
@@ -212,13 +213,13 @@ fs.writeFileSync('./myfile.timestamp', data);
 
 ### Loading a Timestamp
 
-Loading the binary representation into the wrapped `OpenTimestamp` class is done by the static `.fromBinary` class method.
+Loading the binary representation into the wrapped `SimpleStamp` class is done by the static `.fromBinary` class method.
 
 ```javascript
-const OpenTimestamp = require('opentimestamp');
+const SimpleStamp = require('simplestamp');
 
 const data = fs.readFileSync('./myfile.timestamp');
-const timestamp = OpenTimestamp.fromBinary(data);
+const timestamp = SimpleStamp.fromBinary(data);
 ```
 
 ## Testing

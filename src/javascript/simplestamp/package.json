@@ -1,10 +1,10 @@
 {
-  "name": "opentimestamp",
-  "version": "0.1.9",
-  "description": "ECMAScript/JS 6 Node library for creating compact, portable Open Timestamps attestations.",
+  "name": "simplestamp",
+  "version": "0.1.0",
+  "description": "ECMAScript/JS 6 Node library for creating simple, compact, portable Open Timestamps attestations.",
   "keywords": [
+    "simplestamp",
     "opentimestamps",
-    "opentimestamp",
     "timestamp",
     "blockchain",
     "bitcoin",
@@ -21,7 +21,7 @@
   },
   "repository": {
     "type": "git",
-    "url": "git+https://github.com/OpenDataFormats/opentimestamp.git"
+    "url": "git+https://github.com/OpenDataFormats/simplestamp.git"
   },
   "author": {
     "name": "David Arvan",
@@ -29,9 +29,9 @@
   },
   "license": "Unlicense",
   "bugs": {
-    "url": "https://github.com/OpenDataFormats/opentimestamp/issues"
+    "url": "https://github.com/OpenDataFormats/simplestamp/issues"
   },
-  "homepage": "https://github.com/OpenDataFormats/opentimestamp",
+  "homepage": "https://github.com/OpenDataFormats/simplestamp",
   "dependencies": {
     "google-protobuf": "^3.9.1"
   },

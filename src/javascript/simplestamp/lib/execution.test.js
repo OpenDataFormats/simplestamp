@@ -2,8 +2,8 @@
 const fs = require('fs');
 const path = require('path');
 
-const { Attestation } = require('../models/opentimestamp/v1/attestation_pb');
-const { AttestationStatus } = require('../models/opentimestamp/v1/status_pb');
+const { Attestation } = require('../models/simplestamp/v1/attestation_pb');
+const { AttestationStatus } = require('../models/simplestamp/v1/status_pb');
 const Execution = require('./execution');
 const Parser = require('./parser');
 

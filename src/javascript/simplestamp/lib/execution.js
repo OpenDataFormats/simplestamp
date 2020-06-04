@@ -7,7 +7,7 @@
  */
 const crypto = require('crypto');
 
-const { OperationType } = require('../models/opentimestamp/v1/operation_pb');
+const { OperationType } = require('../models/simplestamp/v1/operation_pb');
 const Parser = require('./parser');
 
 
@@ -18,7 +18,7 @@ class Execution {
    * it finds the first OPERATION_TYPE_ATTESTATION.
    *
    * @param {Buffer} hash
-   * @param {Array.<proto.opentimestamp.v1.Operation>} operations
+   * @param {Array.<proto.simplestamp.v1.Operation>} operations
    * @return {Buffer}
    */
   static deriveCalendarKey(hash, operations) {
@@ -65,7 +65,7 @@ class Execution {
    * Takes an initial input and list of Operations and preforms, returning the result.
    *
    * @param {Buffer} initial
-   * @param {proto.opentimestamp.v1.Attestation} attestation
+   * @param {proto.simplestamp.v1.Attestation} attestation
    * @return {Buffer}
    */
   static processOperations(initial, attestation) {

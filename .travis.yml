@@ -3,7 +3,7 @@ node_js:
   - 12
 
 before_install:
-  - cd src/javascript/opentimestamp
+  - cd src/javascript/simplestamp
 
 before_script:
   - cd ../../../

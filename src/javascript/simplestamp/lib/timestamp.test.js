@@ -124,7 +124,7 @@ describe('Timestamp: Binary serialization and deserialization work', () => {
 
   test('.toString serializes correctly', () => {
     const t = new Timestamp(Buffer.alloc(32));
-    expect(t.toString()).toMatch(/^OpenTimestamp: {/);
+    expect(t.toString()).toMatch(/^SimpleStamp: {/);
   });
 });
 

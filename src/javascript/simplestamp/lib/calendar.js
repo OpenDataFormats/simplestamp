@@ -99,7 +99,7 @@ class Calendar {
    * Extract out the code to query the calendar servers for updates to the attestation.
    *
    * @param {Timestamp} timestamp
-   * @param {proto.opentimestamp.v1.Attestation} attestation
+   * @param {proto.simplestamp.v1.Attestation} attestation
    * @return {Promise}
    * @private
    */

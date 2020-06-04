@@ -1,14 +1,14 @@
 //
-// Open Timestamp data models for storing attestations.
+// SimpleStamp data models for storing attestations.
 //
-// Identity of the person creating the Open Timestamp. Modeled after the identity
+// Identity of the person creating the SimpleStamp. Modeled after the identity
 // information for creating a new SSL certificate.
 //
 // License: Unlicense https://unlicense.org
 //
 syntax = "proto3";
 
-package opentimestamp.v1;
+package simplestamp.v1;
 
 
 message Identity {

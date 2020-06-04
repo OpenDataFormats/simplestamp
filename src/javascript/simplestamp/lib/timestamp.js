@@ -1,32 +1,4 @@
-<!DOCTYPE html>
-<html lang="en">
-<head>
-    <meta charset="utf-8">
-    <title>JSDoc: Source: timestamp.js</title>
-
-    <script src="scripts/prettify/prettify.js"> </script>
-    <script src="scripts/prettify/lang-css.js"> </script>
-    <!--[if lt IE 9]>
-      <script src="//html5shiv.googlecode.com/svn/trunk/html5.js"></script>
-    <![endif]-->
-    <link type="text/css" rel="stylesheet" href="styles/prettify-tomorrow.css">
-    <link type="text/css" rel="stylesheet" href="styles/jsdoc-default.css">
-</head>
-
-<body>
-
-<div id="main">
-
-    <h1 class="page-title">Source: timestamp.js</h1>
-
-    
-
-
-
-    
-    <section>
-        <article>
-            <pre class="prettyprint source linenums"><code>/**
+/**
  * @fileoverview Wrapper with convenience methods for the underlying Timestamp protocol buffer.
  * Creates new timestamps for attestation, or can build a timestamp from an existing serialized
  * binary version.
@@ -36,14 +8,16 @@
  */
 const crypto = require('crypto');
 
+const Calendar = require('./calendar');
 const Execution = require('./execution');
 const Parser = require('./parser');
 
-const { Attestation } = require('../models/opentimestamp/v1/attestation_pb');
-const { AttestationStatus } = require('../models/opentimestamp/v1/status_pb');
-const { Identity } = require('../models/opentimestamp/v1/identity_pb');
-const { OpenTimestamp } = require('../models/opentimestamp/v1/timestamp_pb');
-const { OperationType } = require('../models/opentimestamp/v1/operation_pb');
+const { Attestation } = require('../models/simplestamp/v1/attestation_pb');
+const { AttestationStatus } = require('../models/simplestamp/v1/status_pb');
+const { Identity } = require('../models/simplestamp/v1/identity_pb');
+const { Location } = require('../models/simplestamp/v1/location_pb');
+const { SimpleStamp } = require('../models/simplestamp/v1/timestamp_pb');
+const { OperationType } = require('../models/simplestamp/v1/operation_pb');
 
 const NONCE_SIZE_ = 16;
 
@@ -68,8 +42,16 @@ class Timestamp {
    * @constructor
    */
   constructor(hash) {
-    this.timestamp_ = new OpenTimestamp();
-    this.timestamp_.setHash(hash ? Uint8Array.from(hash) : Buffer.alloc(32));
+    if (!(hash instanceof Buffer) || !hash.length) {
+      throw new Error('Timestamp requires a hash of type Buffer with content.');
+    }
+
+    // Reference for overriding underlying methods in testing
+    // @private {Calendar}
+    this.calendar_ = new Calendar();
+
+    this.timestamp_ = new SimpleStamp();
+    this.timestamp_.setHash(hash);
     this.timestamp_.setNonce(Uint8Array.from(crypto.randomBytes(NONCE_SIZE_)));
     this.timestamp_.setCreated(Timestamp.getNow_());
   }
@@ -82,12 +64,12 @@ class Timestamp {
    * @return {Timestamp}
    */
   static fromBinary(binary) {
-    const ts = new Timestamp();
+    const ts = new Timestamp(Buffer.alloc(32));
 
     try {
-      ts.timestamp_ = OpenTimestamp.deserializeBinary(binary);
+      ts.timestamp_ = SimpleStamp.deserializeBinary(binary);
     } catch (e) {
-      throw new Error('Failed to decode binary data to OpenTimestamp.');
+      throw new Error('Failed to decode binary data to SimpleStamp.');
     }
 
     return ts;
@@ -98,7 +80,7 @@ class Timestamp {
    * Add an Attestation to this Timestamp's list. Ignores it if there is already an attestation
    * with the same calendar URL.
    *
-   * @param {proto.opentimestamp.v1.Attestation} attestation
+   * @param {proto.simplestamp.v1.Attestation} attestation
    * @return {boolean} If the data resulted in adding a new Attestation
    */
   addAttestation(attestation) {
@@ -119,7 +101,7 @@ class Timestamp {
    * Search the timestamp's attestations for the one that matches the calendar key.
    *
    * @param {string} calendarKey The key used to construct the URL to the calendar server.
-   * @return {proto.opentimestamp.v1.AttestationStatus}
+   * @return {proto.simplestamp.v1.AttestationStatus}
    */
   getAttestationsByKey(calendarKey) {
     const attestation = this.timestamp_.getAttestationsList().find((a) => {
@@ -141,7 +123,7 @@ class Timestamp {
   /**
    * Get the nice readable label for AttestationStatus values.
    *
-   * @param {proto.opentimestamp.v1.AttestationStatus} status
+   * @param {proto.simplestamp.v1.AttestationStatus} status
    * @return {string}
    */
   static getAttestationStatusLabel(status) {
@@ -171,6 +153,10 @@ class Timestamp {
       components.push(Buffer.from(this.timestamp_.getIdentity().serializeBinary()));
     }
 
+    if (this.timestamp_.hasLocation()) {
+      components.push(Buffer.from(this.timestamp_.getLocation().serializeBinary()));
+    }
+
     const combined = Buffer.concat(components);
     return Execution.sha256(Execution.sha256(combined));
   }
@@ -179,7 +165,7 @@ class Timestamp {
   /**
    * Get the nice readable label for OperationType values.
    *
-   * @param {proto.opentimestamp.v1.OperationType} type
+   * @param {proto.simplestamp.v1.OperationType} type
    * @return {string}
    */
   static getOperationTypeLabel(type) {
@@ -262,6 +248,10 @@ class Timestamp {
     email,
     fullName,
   ) {
+    if (this.isStamped()) {
+      throw new Error('Timestamp already sent for attestation, cannot set the identity.');
+    }
+
     const identity = new Identity();
     identity.setCountryCode(countryCode);
     identity.setState(state);
@@ -273,6 +263,39 @@ class Timestamp {
     identity.setFullName(fullName);
 
     this.timestamp_.setIdentity(identity);
+  }
+
+
+  /**
+   * Set the location and trajectory of where this Timestamp was created.
+   *
+   * @param {number} latitude
+   * @param {number} longitude
+   * @param {number} altitude
+   * @param {number} accuracy
+   * @param {number} direction
+   * @param {number} velocity
+   */
+  setLocation(
+    latitude,
+    longitude,
+    altitude,
+    accuracy,
+    direction,
+    velocity,
+  ) {
+    if (this.isStamped()) {
+      throw new Error('Timestamp already sent for attestation, cannot set the location.');
+    }
+
+    const location = new Location();
+    location.setLatitude(latitude);
+    location.setLongitude(longitude);
+    location.setAltitude(altitude);
+    location.setAccuracyMeters(accuracy);
+    location.setDirection(direction);
+    location.setVelocity(velocity);
+    this.timestamp_.setLocation(location);
   }
 
 
@@ -295,6 +318,17 @@ class Timestamp {
    */
   setSource(source) {
     this.timestamp_.setSource(source);
+  }
+
+
+  /**
+   * Call the /digest endpoint on all of the calendars. Convenience method to the Calendar class.
+   *
+   * @param  {Array.<string>} optUrls List of server URLs that will all be called in stamping to
+   * @return {number} The number of stamps that worked.
+   */
+  async stamp(optUrls) {
+    return this.calendar_.stamp(this, optUrls);
   }
 
 
@@ -327,6 +361,10 @@ class Timestamp {
 
     if (this.timestamp_.hasIdentity()) {
       json.identity = this.timestamp_.getIdentity().toObject();
+    }
+
+    if (this.timestamp_.hasLocation()) {
+      json.location = this.timestamp_.getLocation().toObject();
     }
 
     this.timestamp_.getAttestationsList().forEach((attestation) => {
@@ -374,7 +412,18 @@ class Timestamp {
    * @return {string}
    */
   toString() {
-    return `OpenTimestamp: ${JSON.stringify(this.toJSON())}`;
+    return `SimpleStamp: ${JSON.stringify(this.toJSON())}`;
+  }
+
+
+  /**
+   * Compute the URL for the calendar server and try to fetch updates to the digest hash.
+   * Conveniece wrapper for the Calendar class.
+   *
+   * @return {boolean} Whether an update to the Timestamp was made.
+   */
+  async update() {
+    return this.calendar_.update(this);
   }
 
 
@@ -415,26 +464,3 @@ class Timestamp {
 }
 
 module.exports = Timestamp;
-</code></pre>
-        </article>
-    </section>
-
-
-
-
-</div>
-
-<nav>
-    <h2><a href="index.html">Home</a></h2><h3>Classes</h3><ul><li><a href="Timestamp.html">Timestamp</a></li></ul>
-</nav>
-
-<br class="clear">
-
-<footer>
-    Documentation generated by <a href="https://github.com/jsdoc/jsdoc">JSDoc 3.6.3</a> on Tue Mar 24 2020 19:16:40 GMT+0100 (Central European Standard Time)
-</footer>
-
-<script> prettyPrint(); </script>
-<script src="scripts/linenumber.js"> </script>
-</body>
-</html>

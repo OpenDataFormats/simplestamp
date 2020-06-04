@@ -1,11 +1,11 @@
 //
-// Open Timestamp data models for storing attestations.
+// SimpleStamp data models for storing attestations.
 //
 // License: Unlicense https://unlicense.org
 //
 syntax = "proto3";
 
-package opentimestamp.v1;
+package simplestamp.v1;
 
 
 // The status of the attestation as reported by the calendar server.

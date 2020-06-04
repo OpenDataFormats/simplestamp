@@ -3,7 +3,7 @@ source $(dirname ${0})/base.sh
 
 info "Running all tests"
 
-cd $SRC_JS_OPENTIMESTAMP
+cd $SRC_JS_SIMPLESTAMP
 
 info "Checking code lint"
 

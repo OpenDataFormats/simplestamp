@@ -5,7 +5,7 @@
 #
 
 info() {
-  echo "${OpenTimestamp} :: ${1}"
+  echo "${SimpleStamp} :: ${1}"
 }
 
 
@@ -17,7 +17,7 @@ ROOT_DIR="${BIN_DIR}/.."
 # Source code root folders
 #
 SRC_JS_DIR="${ROOT_DIR}/src/javascript"
-SRC_JS_OPENTIMESTAMP="${SRC_JS_DIR}/opentimestamp"
+SRC_JS_SIMPLESTAMP="${SRC_JS_DIR}/simplestamp"
 SRC_PROTOBUF_DIR="${ROOT_DIR}/src/protobuf"
 
 

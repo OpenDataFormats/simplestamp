@@ -1,18 +1,18 @@
 //
-// Open Timestamp data models for storing attestations.
+// SimpleStamp data models for storing attestations.
 //
 // License: Unlicense https://unlicense.org
 //
 syntax = "proto3";
 
-package opentimestamp.v1;
+package simplestamp.v1;
 
-import "opentimestamp/v1/attestation.proto";
-import "opentimestamp/v1/identity.proto";
-import "opentimestamp/v1/location.proto";
+import "simplestamp/v1/attestation.proto";
+import "simplestamp/v1/identity.proto";
+import "simplestamp/v1/location.proto";
 
 
-message OpenTimestamp {
+message SimpleStamp {
   // The binary hash of the data this timestamp is for.
   // Most likely the SHA256 of a file.
   bytes hash = 1;
@@ -23,7 +23,7 @@ message OpenTimestamp {
   bytes nonce = 2;
 
   // The attestations made
-  repeated opentimestamp.v1.Attestation attestations = 3;
+  repeated simplestamp.v1.Attestation attestations = 3;
 
   // The UNIX timestamp of when this was originally created
   uint32 created = 4;
@@ -38,10 +38,10 @@ message OpenTimestamp {
   string source = 5;
 
   // Identity of the organization and/or person stamping
-  opentimestamp.v1.Identity identity = 6;
+  simplestamp.v1.Identity identity = 6;
 
   // Where the timestamp was created and it's trajectory if moving
-  opentimestamp.v1.Location location = 7;
+  simplestamp.v1.Location location = 7;
 
   // Assorted free form details for the creator to describe the purpose or intent
   string description = 8;
