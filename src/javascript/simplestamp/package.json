@@ -1,5 +1,5 @@
 {
-  "name": "simplestamp",
+  "name": "@opendataformats/simplestamp",
   "version": "0.1.0",
   "description": "ECMAScript/JS 6 Node library for creating simple, compact, portable Open Timestamps attestations.",
   "keywords": [
