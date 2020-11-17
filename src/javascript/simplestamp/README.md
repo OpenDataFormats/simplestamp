@@ -1,5 +1,3 @@
-**_Note: Not ready for production use, still in beta and requires further testing._**
-
 [![Build Status](https://travis-ci.com/OpenDataFormats/simplestamp.svg?branch=master)](https://travis-ci.com/OpenDataFormats/simplestamp)
 
 [![Coverage Status](https://coveralls.io/repos/github/OpenDataFormats/simplestamp/badge.svg?branch=master)](https://coveralls.io/github/OpenDataFormats/simplestamp?branch=master)
