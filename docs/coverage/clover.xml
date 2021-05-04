@@ -1,6 +1,6 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<coverage generated="1605603758928" clover="3.2.0">
-  <project timestamp="1605603758928" name="All files">
+<coverage generated="1620146030066" clover="3.2.0">
+  <project timestamp="1620146030066" name="All files">
     <metrics statements="259" coveredstatements="259" conditionals="77" coveredconditionals="77" methods="47" coveredmethods="47" elements="383" coveredelements="383" complexity="0" loc="259" ncloc="259" packages="1" files="4" classes="4"/>
     <file name="calendar.js" path="/Users/david/src/opendataformats/simplestamp/src/javascript/simplestamp/lib/calendar.js">
       <metrics statements="34" coveredstatements="34" conditionals="4" coveredconditionals="4" methods="9" coveredmethods="9"/>
