@@ -7,5 +7,4 @@
  */
 const Timestamp = require('./lib/timestamp');
 
-
 module.exports = Timestamp;

@@ -15,8 +15,7 @@ const path = require('path');
 const Execution = require('./execution');
 
 const DEFAULT_CALENDAR_URLS_ = fs.readFileSync(path.join(__dirname, '../config/calendars'), 'utf8')
-  .split('\n').filter(line => (line.length));
-
+  .split('\n').filter((line) => (line.length));
 
 class Calendar {
   /**
@@ -28,11 +27,10 @@ class Calendar {
    */
   async stamp(timestamp, optUrls) {
     let stamps = 0;
-    const stampUrls = (optUrls || DEFAULT_CALENDAR_URLS_).map(url => (new URL(url)));
-
+    const stampUrls = (optUrls || DEFAULT_CALENDAR_URLS_).map((url) => (new URL(url)));
 
     const digests = await Promise.all(
-      stampUrls.map(url => (this.stampOne(url, timestamp.getDigestHash()))),
+      stampUrls.map((url) => (this.stampOne(url, timestamp.getDigestHash()))),
     );
 
     digests.forEach((binary) => {
@@ -42,13 +40,12 @@ class Calendar {
       } catch (e) {
         // Don't rethrow, so the other imports can potentially work
         // eslint-disable-next-line no-console
-        console.log('There was an error importing the digest data.', e);
+        console.error('There was an error importing the digest data.', e);
       }
     });
 
     return stamps;
   }
-
 
   /**
    * Call the /digest endpoint on one calendar.
@@ -72,7 +69,6 @@ class Calendar {
     return this.request_(options, hash);
   }
 
-
   /**
    * Compute the URL for the calendar server and try to fetch updates to the digest hash.
    *
@@ -88,12 +84,11 @@ class Calendar {
     }
 
     const updated = await Promise.all(
-      pending.map(p => (this.updateInternal_(timestamp, p))),
+      pending.map((p) => (this.updateInternal_(timestamp, p))),
     );
 
     return updated.includes(true);
   }
-
 
   /**
    * Extract out the code to query the calendar servers for updates to the attestation.
@@ -131,7 +126,6 @@ class Calendar {
       return false;
     }
   }
-
 
   /**
    * Promisify the https library request.
@@ -179,6 +173,5 @@ class Calendar {
     });
   }
 }
-
 
 module.exports = Calendar;

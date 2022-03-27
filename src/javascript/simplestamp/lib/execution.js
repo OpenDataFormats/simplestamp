@@ -10,7 +10,6 @@ const crypto = require('crypto');
 const { OperationType } = require('../models/simplestamp/v1/operation_pb');
 const Parser = require('./parser');
 
-
 class Execution {
   /**
    * Given a source hash and list of operations, iterate over the operations to derive
@@ -59,7 +58,6 @@ class Execution {
 
     return result;
   }
-
 
   /**
    * Takes an initial input and list of Operations and preforms, returning the result.
@@ -131,7 +129,6 @@ class Execution {
     return attestation;
   }
 
-
   /**
    * SHA256 hash the input binary
    *
@@ -142,6 +139,5 @@ class Execution {
     return crypto.createHash('sha256').update(Buffer.from(input)).digest();
   }
 }
-
 
 module.exports = Execution;

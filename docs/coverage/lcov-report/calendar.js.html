@@ -234,14 +234,7 @@
 <a name='L175'></a><a href='#L175'>175</a>
 <a name='L176'></a><a href='#L176'>176</a>
 <a name='L177'></a><a href='#L177'>177</a>
-<a name='L178'></a><a href='#L178'>178</a>
-<a name='L179'></a><a href='#L179'>179</a>
-<a name='L180'></a><a href='#L180'>180</a>
-<a name='L181'></a><a href='#L181'>181</a>
-<a name='L182'></a><a href='#L182'>182</a>
-<a name='L183'></a><a href='#L183'>183</a>
-<a name='L184'></a><a href='#L184'>184</a>
-<a name='L185'></a><a href='#L185'>185</a></td><td class="line-coverage quiet"><span class="cline-any cline-neutral">&nbsp;</span>
+<a name='L178'></a><a href='#L178'>178</a></td><td class="line-coverage quiet"><span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
@@ -269,10 +262,8 @@
 <span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
-<span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-yes">2x</span>
 <span class="cline-any cline-yes">6x</span>
-<span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-yes">2x</span>
 <span class="cline-any cline-yes">6x</span>
@@ -300,7 +291,6 @@
 <span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
-<span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-yes">6x</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
@@ -313,7 +303,6 @@
 <span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-yes">6x</span>
-<span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
@@ -346,7 +335,6 @@
 <span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
-<span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-yes">6x</span>
 <span class="cline-any cline-yes">6x</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
@@ -372,8 +360,6 @@
 <span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-yes">3x</span>
-<span class="cline-any cline-neutral">&nbsp;</span>
-<span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
@@ -442,8 +428,7 @@ const path = require('path');
 const Execution = require('./execution');
 &nbsp;
 const DEFAULT_CALENDAR_URLS_ = fs.readFileSync(path.join(__dirname, '../config/calendars'), 'utf8')
-  .split('\n').filter(line =&gt; (line.length));
-&nbsp;
+  .split('\n').filter((line) =&gt; (line.length));
 &nbsp;
 class Calendar {
   /**
@@ -455,11 +440,10 @@ class Calendar {
    */
   async stamp(timestamp, optUrls) {
     let stamps = 0;
-    const stampUrls = (optUrls || DEFAULT_CALENDAR_URLS_).map(url =&gt; (new URL(url)));
-&nbsp;
+    const stampUrls = (optUrls || DEFAULT_CALENDAR_URLS_).map((url) =&gt; (new URL(url)));
 &nbsp;
     const digests = await Promise.all(
-      stampUrls.map(url =&gt; (this.stampOne(url, timestamp.getDigestHash()))),
+      stampUrls.map((url) =&gt; (this.stampOne(url, timestamp.getDigestHash()))),
     );
 &nbsp;
     digests.forEach((binary) =&gt; {
@@ -469,13 +453,12 @@ class Calendar {
       } catch (e) {
         // Don't rethrow, so the other imports can potentially work
         // eslint-disable-next-line no-console
-        console.log('There was an error importing the digest data.', e);
+        console.error('There was an error importing the digest data.', e);
       }
     });
 &nbsp;
     return stamps;
   }
-&nbsp;
 &nbsp;
   /**
    * Call the /digest endpoint on one calendar.
@@ -499,7 +482,6 @@ class Calendar {
     return this.request_(options, hash);
   }
 &nbsp;
-&nbsp;
   /**
    * Compute the URL for the calendar server and try to fetch updates to the digest hash.
    *
@@ -515,12 +497,11 @@ class Calendar {
     }
 &nbsp;
     const updated = await Promise.all(
-      pending.map(p =&gt; (this.updateInternal_(timestamp, p))),
+      pending.map((p) =&gt; (this.updateInternal_(timestamp, p))),
     );
 &nbsp;
     return updated.includes(true);
   }
-&nbsp;
 &nbsp;
   /**
    * Extract out the code to query the calendar servers for updates to the attestation.
@@ -558,7 +539,6 @@ class Calendar {
       return false;
     }
   }
-&nbsp;
 &nbsp;
   /**
    * Promisify the https library request.
@@ -607,7 +587,6 @@ class Calendar {
   }
 }
 &nbsp;
-&nbsp;
 module.exports = Calendar;
 &nbsp;</pre></td></tr></table></pre>
 
@@ -616,7 +595,7 @@ module.exports = Calendar;
             <div class='footer quiet pad2 space-top1 center small'>
                 Code coverage generated by
                 <a href="https://istanbul.js.org/" target="_blank">istanbul</a>
-                at Tue May 04 2021 18:33:50 GMT+0200 (Central European Summer Time)
+                at Sun Mar 27 2022 11:44:11 GMT+0200 (Central European Summer Time)
             </div>
         </div>
         <script src="prettify.js"></script>

@@ -18,7 +18,6 @@ const calendarKey = Buffer.from('5e7505e786c61440e52ff8a9d903531ed45b433b055754e
 const hash = '9e1c0ceaac7cab5b6245d2d6182fa33a85be438bc80b2951c141422336fe265a';
 const nonce = 'bc5dec093f222720a748b76c85554819';
 
-
 describe('Timestamp: Static methods produce deterministic results', () => {
   test('.getNow_ produces valid UNIX timestamps', () => {
     expect(Timestamp.getNow_()).toBeGreaterThan(1583944783);
@@ -27,13 +26,11 @@ describe('Timestamp: Static methods produce deterministic results', () => {
     expect(Timestamp.getNow_()).toBeLessThan(1899477670);
   });
 
-
   test('.getOperationTypeLabel produces correct labels', () => {
     expect(Timestamp.getOperationTypeLabel(8)).toBe('SHA256');
 
     expect(Timestamp.getOperationTypeLabel(8675309)).toBe('ATTESTATION');
   });
-
 
   test('.getAttestationStatusLabel produces correct labels', () => {
     expect(Timestamp.getAttestationStatusLabel(2)).toBe('PENDING');
@@ -43,7 +40,6 @@ describe('Timestamp: Static methods produce deterministic results', () => {
     expect(Timestamp.getAttestationStatusLabel(12345)).toBe('INVALID');
   });
 
-
   test('constructor produces an empty Timestamp', () => {
     const t = new Timestamp(Buffer.from(hash, 'hex'));
     t.setNonce(Buffer.from(nonce, 'hex'));
@@ -52,14 +48,12 @@ describe('Timestamp: Static methods produce deterministic results', () => {
       .toBe('0fc1e585713206a42054616b59ca8dea396f912dea758920b591a48bdae9300b');
   });
 
-
   test('constructor with no hash throws an Error', () => {
     expect(() => {
       // eslint-disable-next-line no-unused-vars
       const t = new Timestamp();
     }).toThrow();
   });
-
 
   test('constructor with the same hash produces different digests from random nonces', () => {
     const t1 = new Timestamp(Buffer.from(hash, 'hex'));
@@ -69,7 +63,6 @@ describe('Timestamp: Static methods produce deterministic results', () => {
       .toBe(false);
   });
 });
-
 
 describe('Timestamp: Binary serialization and deserialization work', () => {
   test('.fromBinary produces a valid Timestamp', () => {
@@ -111,7 +104,6 @@ describe('Timestamp: Binary serialization and deserialization work', () => {
     }).toThrow();
   });
 
-
   test('.toBinary serializes correctly', () => {
     expect(() => {
       const t = Timestamp.fromBinary(binTimestamp1);
@@ -121,13 +113,11 @@ describe('Timestamp: Binary serialization and deserialization work', () => {
     }).not.toThrow();
   });
 
-
   test('.toString serializes correctly', () => {
     const t = new Timestamp(Buffer.alloc(32));
     expect(t.toString()).toMatch(/^SimpleStamp: {/);
   });
 });
-
 
 describe('Timestamp: Setting rich details are included in the digest hash', () => {
   test('source value produces a valid digest', () => {
@@ -136,7 +126,6 @@ describe('Timestamp: Setting rich details are included in the digest hash', () =
     expect(t.getDigestHash().toString('hex'))
       .toBe('252f7c88e82afdf3c368a783fcb36d7990fc00f4e8b190ca4a44ac47968aae20');
   });
-
 
   test('Adding identity information produces a valid digest', () => {
     const t = Timestamp.fromBinary(binTimestamp0);
@@ -158,7 +147,6 @@ describe('Timestamp: Setting rich details are included in the digest hash', () =
     expect(json.identity.section).toBe('Engineering');
   });
 
-
   test('Adding identity after stamping throws an error', () => {
     expect(() => {
       const t = Timestamp.fromBinary(binTimestamp1);
@@ -169,10 +157,8 @@ describe('Timestamp: Setting rich details are included in the digest hash', () =
   });
 });
 
-
 describe('Timestamp: Adding attestation binary data', () => {
   const upgradeKey = Buffer.from('5e7505e786c61440e52ff8a9d903531ed45b433b055754e656b712b3aba7bae20e1aca765e87ee6d676f0a9d', 'hex');
-
 
   test('Adding digest data works', () => {
     const t = new Timestamp(Buffer.from(hash, 'hex'));
@@ -181,7 +167,6 @@ describe('Timestamp: Adding attestation binary data', () => {
     const imported = t.importDigestResponse(binRequest);
     expect(imported).toBe(true);
   });
-
 
   test('Upgrading works', () => {
     expect(() => {
@@ -193,7 +178,6 @@ describe('Timestamp: Adding attestation binary data', () => {
     }).not.toThrow();
   });
 
-
   test('Upgrading again throws', () => {
     expect(() => {
       const t = Timestamp.fromBinary(binTimestamp2);
@@ -202,7 +186,6 @@ describe('Timestamp: Adding attestation binary data', () => {
     }).toThrow();
   });
 });
-
 
 describe('Timestamp: Empty, unstamped, state changes with pending attestation', () => {
   test('State moves from false to true', () => {
@@ -217,7 +200,6 @@ describe('Timestamp: Empty, unstamped, state changes with pending attestation', 
     expect(t.isStamped()).toBe(true);
   });
 });
-
 
 describe('Timestamp: Location data is set correctly', () => {
   test('Wrapper method sets underlying values.', () => {
@@ -240,7 +222,6 @@ describe('Timestamp: Location data is set correctly', () => {
     expect(typeof l.getVelocity()).toBe('number');
   });
 
-
   test('Setting location after stamping throws an error', () => {
     expect(() => {
       const t = Timestamp.fromBinary(binTimestamp1);
@@ -249,7 +230,6 @@ describe('Timestamp: Location data is set correctly', () => {
       );
     }).toThrow();
   });
-
 
   test('Setting location information produces a valid digest', () => {
     const t = Timestamp.fromBinary(binTimestamp0);

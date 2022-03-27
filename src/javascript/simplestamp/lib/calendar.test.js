@@ -18,11 +18,12 @@ const binTimestamp0 = fs.readFileSync(path.join(__dirname, '../../../tests/data/
 const binTimestamp1 = fs.readFileSync(path.join(__dirname, '../../../tests/data/timestamp01.bin'));
 const binTimestamp2 = fs.readFileSync(path.join(__dirname, '../../../tests/data/timestamp02.bin'));
 
-const requestMockReq = jest.fn(() => (new Promise(resolve => (resolve(binRequest)))));
-const requestMockRes = jest.fn(() => (new Promise(resolve => (resolve(binResponse)))));
+const requestMockReq = jest.fn(() => (new Promise((resolve) => { resolve(binRequest); })));
+const requestMockRes = jest.fn(() => (new Promise((resolve) => { resolve(binResponse); })));
 
-const requestMockBadData = jest.fn(() => (new Promise(resolve => (resolve(Buffer.alloc(100, 9))))));
-
+const requestMockBadData = jest.fn(
+  () => (new Promise((resolve) => { resolve(Buffer.alloc(100, 9)); })),
+);
 
 describe('Calendar: Stamping a Timestamp without attestations', () => {
   test('.stamp handles binary data from the remote server correctly', async () => {
@@ -34,7 +35,6 @@ describe('Calendar: Stamping a Timestamp without attestations', () => {
     expect(requestMockReq).toHaveBeenCalled();
   });
 
-
   test('.stamp handles invalid binary data from the remote server correctly', async () => {
     const t = Timestamp.fromBinary(binTimestamp0);
 
@@ -44,7 +44,6 @@ describe('Calendar: Stamping a Timestamp without attestations', () => {
     expect(requestMockBadData).toHaveBeenCalled();
   });
 });
-
 
 describe('Calendar: Updating a Timestamp', () => {
   test('.update handles binary data from the remote server correctly', async () => {
@@ -57,7 +56,6 @@ describe('Calendar: Updating a Timestamp', () => {
     expect(updated).toBe(true);
   });
 
-
   test('.update handles bad binary data from the remote server correctly', async () => {
     const t = Timestamp.fromBinary(binTimestamp1);
 
@@ -67,7 +65,6 @@ describe('Calendar: Updating a Timestamp', () => {
     expect(requestMockBadData).toHaveBeenCalled();
     expect(updated).toBe(false);
   });
-
 
   test('.update returns false when there are no pending attestations', async () => {
     const t = Timestamp.fromBinary(binTimestamp2);

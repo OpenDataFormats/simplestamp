@@ -35,7 +35,6 @@ Object.entries(AttestationStatus).forEach((entry) => {
   [STATUS_LABELS_[entry[1]]] = entry;
 });
 
-
 class Timestamp {
   /**
    * @param  {Buffer} hash The hash of the data to be timestamped.
@@ -56,7 +55,6 @@ class Timestamp {
     this.timestamp_.setCreated(Timestamp.getNow_());
   }
 
-
   /**
    * Parse a serialized binary representation of an existing Timestamp.
    *
@@ -75,7 +73,6 @@ class Timestamp {
     return ts;
   }
 
-
   /**
    * Add an Attestation to this Timestamp's list. Ignores it if there is already an attestation
    * with the same calendar URL.
@@ -85,7 +82,7 @@ class Timestamp {
    */
   addAttestation(attestation) {
     const exists = this.timestamp_.getAttestationsList()
-      .some(a => (a.getCalendarUrl() === attestation.getCalendarUrl()));
+      .some((a) => (a.getCalendarUrl() === attestation.getCalendarUrl()));
 
     if (exists) {
       return false;
@@ -95,7 +92,6 @@ class Timestamp {
     this.timestamp_.addAttestations(attestation);
     return true;
   }
-
 
   /**
    * Search the timestamp's attestations for the one that matches the calendar key.
@@ -119,7 +115,6 @@ class Timestamp {
     return attestation;
   }
 
-
   /**
    * Get the nice readable label for AttestationStatus values.
    *
@@ -130,7 +125,6 @@ class Timestamp {
     return (STATUS_LABELS_[status] || STATUS_LABELS_[0])
       .replace('ATTESTATION_STATUS_', '');
   }
-
 
   /**
    * Compute the hash that will be submitted as a hash of the combination of the
@@ -161,7 +155,6 @@ class Timestamp {
     return Execution.sha256(Execution.sha256(combined));
   }
 
-
   /**
    * Get the nice readable label for OperationType values.
    *
@@ -173,7 +166,6 @@ class Timestamp {
       .replace('OPERATION_TYPE_', '');
   }
 
-
   /**
    * Get the Attestations that are in the pending state and could potentially be
    * upgraded by checking the calendar server for updates.
@@ -182,9 +174,8 @@ class Timestamp {
    */
   getPending() {
     return this.timestamp_.getAttestationsList()
-      .filter(a => (a.getStatus() === AttestationStatus.ATTESTATION_STATUS_PENDING));
+      .filter((a) => (a.getStatus() === AttestationStatus.ATTESTATION_STATUS_PENDING));
   }
-
 
   /**
    * Whether there are attestations with pending updates.
@@ -194,7 +185,6 @@ class Timestamp {
   hasPending() {
     return this.getPending().length > 0;
   }
-
 
   /**
    * Take the binary response from calling /digest on a calendar server, process it,
@@ -212,7 +202,6 @@ class Timestamp {
     return this.addAttestation(processed);
   }
 
-
   /**
    * If this Timestamp has been "stamped", it will have Attestations in the
    * ATTESTATION_STATUS_PENDING state, otherwise it will have no Attestations.
@@ -222,7 +211,6 @@ class Timestamp {
   isStamped() {
     return !!this.timestamp_.getAttestationsList().length;
   }
-
 
   /**
    * Set the Identity information on the timestamp. All fields are optional.
@@ -265,7 +253,6 @@ class Timestamp {
     this.timestamp_.setIdentity(identity);
   }
 
-
   /**
    * Set the location and trajectory of where this Timestamp was created.
    *
@@ -298,7 +285,6 @@ class Timestamp {
     this.timestamp_.setLocation(location);
   }
 
-
   /**
    * Override the random nonce value. Mostly useful for testing.
    *
@@ -307,7 +293,6 @@ class Timestamp {
   setNonce(nonce) {
     this.timestamp_.setNonce(nonce);
   }
-
 
   /**
    * Set the source field; file name, URL, etc. Helpful for identifying the source
@@ -320,7 +305,6 @@ class Timestamp {
     this.timestamp_.setSource(source);
   }
 
-
   /**
    * Call the /digest endpoint on all of the calendars. Convenience method to the Calendar class.
    *
@@ -331,7 +315,6 @@ class Timestamp {
     return this.calendar_.stamp(this, optUrls);
   }
 
-
   /**
    * Create a portable, serialized version of the Timestamp.
    *
@@ -340,7 +323,6 @@ class Timestamp {
   toBinary() {
     return Buffer.from(this.timestamp_.serializeBinary());
   }
-
 
   /**
    * JSON representation of a Timestamp
@@ -405,7 +387,6 @@ class Timestamp {
     return json;
   }
 
-
   /**
    * Nicer string representation of the data, not meant to be imported.
    *
@@ -414,7 +395,6 @@ class Timestamp {
   toString() {
     return `SimpleStamp: ${JSON.stringify(this.toJSON())}`;
   }
-
 
   /**
    * Compute the URL for the calendar server and try to fetch updates to the digest hash.
@@ -425,7 +405,6 @@ class Timestamp {
   async update() {
     return this.calendar_.update(this);
   }
-
 
   /**
    * Given the calendar key and binary data response, find the correct attestation,
@@ -450,7 +429,6 @@ class Timestamp {
     existing = Execution.processOperations(this.getDigestHash(), existing);
     return true;
   }
-
 
   /**
    * Utility method for UNIX timestamp in seconds.

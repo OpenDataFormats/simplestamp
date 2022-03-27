@@ -16,7 +16,6 @@ const ATTESTATION_TAGS = {
   '83dfe30d2ef90c8e': AttestationStatus.ATTESTATION_STATUS_PENDING,
 };
 
-
 class Parser {
   /**
    * Extract the sequence of operations from binary data returned by a calendar server.
@@ -84,7 +83,6 @@ class Parser {
     return operations;
   }
 
-
   /**
    * Figure out the correct status flag from the binary tag.
    */
@@ -92,7 +90,6 @@ class Parser {
     const tag = binary.slice(0, ATTESTATION_TAG_SIZE).toString('hex');
     return ATTESTATION_TAGS[tag] || AttestationStatus.ATTESTATION_STATUS_UNKNOWN;
   }
-
 
   /**
    * Reads the initial bytes as a variable length int that indicates how many more
@@ -115,7 +112,6 @@ class Parser {
       remainder.slice(size),
     ];
   }
-
 
   /**
    * Reads in bytes as an unsigned variable length integer, where
@@ -142,7 +138,6 @@ class Parser {
     ];
   }
 
-
   /**
    * Reverse the bytes in a buffer.
    *
@@ -157,6 +152,5 @@ class Parser {
     return result;
   }
 }
-
 
 module.exports = Parser;

@@ -5,7 +5,6 @@ const path = require('path');
 
 const Parser = require('./parser');
 
-
 describe('Parser: Parsing the response to a digest server request', () => {
   test('.parseServerResponse of valid alice digest binary data', () => {
     const binDigest = fs.readFileSync(
@@ -25,7 +24,6 @@ describe('Parser: Parsing the response to a digest server request', () => {
       .toBe('https://bob.btc.calendar.opentimestamps.org');
   });
 
-
   test('.parseServerResponse of valid bob digest binary data', () => {
     const binDigest = fs.readFileSync(
       path.join(__dirname, '../../../tests/data/digest-02-request.bin'),
@@ -40,7 +38,6 @@ describe('Parser: Parsing the response to a digest server request', () => {
     expect(operations[4].getCalendarUrl())
       .toBe('https://bob.btc.calendar.opentimestamps.org');
   });
-
 
   test('.parseServerResponse of sha1 and ripemd160', () => {
     const binDigest = fs.readFileSync(
@@ -58,7 +55,6 @@ describe('Parser: Parsing the response to a digest server request', () => {
     }).not.toThrow();
   });
 
-
   test('.parseServerResponse with an invalid operation type to be set unknown', () => {
     const binDigest = fs.readFileSync(
       path.join(__dirname, '../../../tests/data/digest-01-request.bin'),
@@ -68,7 +64,6 @@ describe('Parser: Parsing the response to a digest server request', () => {
     const operations = Parser.parseServerResponse(Buffer.from(hexRequest, 'hex'));
     expect(operations[4].getStatus()).toBe(1);
   });
-
 
   test('.parseServerResponse with less data than expected', () => {
     const binDigest = fs.readFileSync(
@@ -80,7 +75,6 @@ describe('Parser: Parsing the response to a digest server request', () => {
     }).toThrow();
   });
 
-
   test('.parseServerResponse with random data throws an error', () => {
     const random = crypto.randomBytes(161);
 
@@ -89,7 +83,6 @@ describe('Parser: Parsing the response to a digest server request', () => {
     }).toThrow();
   });
 
-
   test('.reverse a buffer properly for txids', () => {
     const hash = Buffer.from('093febd0f49a812931239b920acabbab20c3511a49d44e79effba8d44ec2b102', 'hex');
 
@@ -97,7 +90,6 @@ describe('Parser: Parsing the response to a digest server request', () => {
       .toBe('02b1c24ed4a8fbef794ed4491a51c320abbbca0a929b233129819af4d0eb3f09');
   });
 });
-
 
 describe('Parser: Parsing the response to a timestamp server request', () => {
   test('.parseServerResponse of valid alice timestamp binary data', () => {
@@ -115,7 +107,6 @@ describe('Parser: Parsing the response to a timestamp server request', () => {
       .toBe('177a0900');
   });
 
-
   test('.parseServerResponse of valid bob timestamp binary data', () => {
     const binTimestamp = fs.readFileSync(
       path.join(__dirname, '../../../tests/data/digest-02-response.bin'),
@@ -126,7 +117,6 @@ describe('Parser: Parsing the response to a timestamp server request', () => {
 
     expect(operations[65].getBlockHeight()).toBe(621138);
   });
-
 
   test('.parseServerResponse with an invalid operation type', () => {
     const binDigest = fs.readFileSync(
