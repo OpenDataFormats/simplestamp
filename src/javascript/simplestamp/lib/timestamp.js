@@ -225,6 +225,16 @@ class Timestamp {
 
 
   /**
+   * Set the free-form description field on the timestamp.
+   *
+   * @param {string} description
+   */
+  setDescription(description) {
+    this.timestamp_.setDescription(description);
+  }
+
+
+  /**
    * Set the Identity information on the timestamp. All fields are optional.
    * Calling this function twice with missing fields that previously existed
    * will those previous values.
