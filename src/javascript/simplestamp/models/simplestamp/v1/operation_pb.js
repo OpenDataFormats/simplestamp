@@ -300,7 +300,8 @@ proto.simplestamp.v1.Operation.prototype.setBlockHeight = function(value) {
  * @enum {number}
  */
 proto.simplestamp.v1.OperationType = {
-  OPERATION_TYPE_ATTESTATION: 0,
+  OPERATION_TYPE_UNKNOWN: 0,
+  OPERATION_TYPE_ATTESTATION: 1,
   OPERATION_TYPE_SHA1: 2,
   OPERATION_TYPE_RIPEMD160: 3,
   OPERATION_TYPE_SHA256: 8,

@@ -13,7 +13,8 @@ import "simplestamp/v1/status.proto";
 // The type of operation to perform. Enum values correspond to the wire format
 // in the server calls.
 enum OperationType {
-  OPERATION_TYPE_ATTESTATION = 0;
+  OPERATION_TYPE_UNKNOWN = 0;
+  OPERATION_TYPE_ATTESTATION = 1;
 
   OPERATION_TYPE_SHA1 = 2;
   OPERATION_TYPE_RIPEMD160 = 3;

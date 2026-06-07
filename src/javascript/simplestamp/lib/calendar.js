@@ -15,7 +15,7 @@ const path = require('path');
 const Execution = require('./execution');
 
 const DEFAULT_CALENDAR_URLS_ = fs.readFileSync(path.join(__dirname, '../config/calendars'), 'utf8')
-  .split('\n').filter(line => (line.length));
+  .split('\n').filter((line) => (line.length));
 
 
 class Calendar {
@@ -28,11 +28,11 @@ class Calendar {
    */
   async stamp(timestamp, optUrls) {
     let stamps = 0;
-    const stampUrls = (optUrls || DEFAULT_CALENDAR_URLS_).map(url => (new URL(url)));
+    const stampUrls = (optUrls || DEFAULT_CALENDAR_URLS_).map((url) => (new URL(url)));
 
 
     const digests = await Promise.all(
-      stampUrls.map(url => (this.stampOne(url, timestamp.getDigestHash()))),
+      stampUrls.map((url) => (this.stampOne(url, timestamp.getDigestHash()))),
     );
 
     digests.forEach((binary) => {
@@ -88,7 +88,7 @@ class Calendar {
     }
 
     const updated = await Promise.all(
-      pending.map(p => (this.updateInternal_(timestamp, p))),
+      pending.map((p) => (this.updateInternal_(timestamp, p))),
     );
 
     return updated.includes(true);

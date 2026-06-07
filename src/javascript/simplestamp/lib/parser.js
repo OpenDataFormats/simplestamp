@@ -35,8 +35,10 @@ class Parser {
       const type = remainder[0];
       remainder = remainder.slice(1);
 
-      if (!Object.values(OperationType).includes(type)) {
-        throw new Error(`Operation with type ${type} not supported.`);
+      if (type === OperationType.OPERATION_TYPE_UNKNOWN) {
+        // Don't rethrow, so the other imports can potentially work
+        // eslint-disable-next-line no-console
+        console.error(new Error(`Operation with type ${type} not supported.`));
       }
 
       const operation = new Operation();

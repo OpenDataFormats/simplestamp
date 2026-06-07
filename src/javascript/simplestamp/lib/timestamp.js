@@ -85,7 +85,7 @@ class Timestamp {
    */
   addAttestation(attestation) {
     const exists = this.timestamp_.getAttestationsList()
-      .some(a => (a.getCalendarUrl() === attestation.getCalendarUrl()));
+      .some((a) => (a.getCalendarUrl() === attestation.getCalendarUrl()));
 
     if (exists) {
       return false;
@@ -182,7 +182,7 @@ class Timestamp {
    */
   getPending() {
     return this.timestamp_.getAttestationsList()
-      .filter(a => (a.getStatus() === AttestationStatus.ATTESTATION_STATUS_PENDING));
+      .filter((a) => (a.getStatus() === AttestationStatus.ATTESTATION_STATUS_PENDING));
   }
 
 

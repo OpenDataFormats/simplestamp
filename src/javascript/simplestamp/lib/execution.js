@@ -118,7 +118,9 @@ class Execution {
           break;
 
         default:
-          throw new Error(`Cannot handle an operation of type ${type}`);
+          op.setType(OperationType.OPERATION_TYPE_UNKNOWN);
+          result = Buffer.concat([result, value]);
+          break;
       }
     });
 
