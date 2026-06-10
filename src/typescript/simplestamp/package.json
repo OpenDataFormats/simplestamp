@@ -16,7 +16,7 @@
     "dist"
   ],
   "scripts": {
-    "build": "tsc",
+    "build": "tsc && cp -r config dist/config",
     "build:watch": "tsc --watch",
     "proto:gen": "protoc --plugin=protoc-gen-ts_proto=./node_modules/.bin/protoc-gen-ts_proto --ts_proto_out=models --ts_proto_opt=esModuleInterop=true,forceLong=number,outputEncodeMethods=true,outputJsonMethods=false,outputClientImpl=false --proto_path=../../protobuf ../../protobuf/simplestamp/v1/*.proto",
     "lint": "eslint . --ext .ts",
