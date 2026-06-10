@@ -76,6 +76,9 @@ class Execution {
       const value = Buffer.from(op.getValue());
 
       switch (type) {
+        // Handle both OPERATION_TYPE_UNKNOWN (0, the proto default / OT wire byte) and
+        // OPERATION_TYPE_ATTESTATION (1) so that ops deserialized from stored protos work too.
+        case OperationType.OPERATION_TYPE_UNKNOWN:
         case OperationType.OPERATION_TYPE_ATTESTATION:
           attestation.setStatus(op.getStatus());
 
@@ -118,9 +121,7 @@ class Execution {
           break;
 
         default:
-          op.setType(OperationType.OPERATION_TYPE_UNKNOWN);
-          result = Buffer.concat([result, value]);
-          break;
+          throw new Error(`Unsupported operation type: ${type}`);
       }
     });
 

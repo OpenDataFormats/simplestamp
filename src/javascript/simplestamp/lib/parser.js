@@ -35,12 +35,6 @@ class Parser {
       const type = remainder[0];
       remainder = remainder.slice(1);
 
-      if (type === OperationType.OPERATION_TYPE_UNKNOWN) {
-        // Don't rethrow, so the other imports can potentially work
-        // eslint-disable-next-line no-console
-        console.error(new Error(`Operation with type ${type} not supported.`));
-      }
-
       const operation = new Operation();
       operation.setType(type);
 
@@ -53,7 +47,9 @@ class Parser {
         case OperationType.OPERATION_TYPE_PREPEND:
           [value, remainder] = Parser.extractVariableBytes(remainder);
           break;
-        case OperationType.OPERATION_TYPE_ATTESTATION:
+        // OpenTimestamps binary format uses 0x00 as the attestation wire byte.
+        // The proto Operation type field is left at its default (0 = not serialized).
+        case 0:
           status = Parser.extractAttestationStatus(remainder);
           operation.setStatus(status);
           remainder = remainder.slice(ATTESTATION_TAG_SIZE);
@@ -73,6 +69,8 @@ class Parser {
               break;
           }
           break;
+        default:
+          throw new Error(`Operation with type ${type} not supported.`);
       }
 
       if (value) {

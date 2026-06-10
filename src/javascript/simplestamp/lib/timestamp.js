@@ -169,7 +169,7 @@ class Timestamp {
    * @return {string}
    */
   static getOperationTypeLabel(type) {
-    return (OPERATION_TYPE_LABELS_[type] || OPERATION_TYPE_LABELS_[0])
+    return (OPERATION_TYPE_LABELS_[type] || OPERATION_TYPE_LABELS_[OperationType.OPERATION_TYPE_ATTESTATION])
       .replace('OPERATION_TYPE_', '');
   }
 
@@ -455,7 +455,12 @@ class Timestamp {
       throw new Error('Attestation has already been upgraded with timestamp data.');
     }
 
-    const operations = Parser.parseServerResponse(binary);
+    let operations = [];
+    try {
+      operations = Parser.parseServerResponse(binary);
+    } catch (e) {
+      // Bad or unrecognized data from the server — continue with existing operations only
+    }
     existing.setOperationsList(existing.getOperationsList().concat(operations));
     existing = Execution.processOperations(this.getDigestHash(), existing);
     return true;
