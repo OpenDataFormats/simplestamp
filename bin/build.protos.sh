@@ -9,7 +9,5 @@ find ${MODELS_OUT} -type f -name '*_pb.js' -exec rm {} +
 
 
 info "Generating CommonJS compatible Protocol Buffer messages"
-${CLOSURE_PROTOC} \
-  --js_out=import_style=commonjs,binary:${MODELS_OUT} \
-  --proto_path=${SRC_PROTOBUF_DIR} \
-  $(find ${SRC_PROTOBUF_DIR} -iname '*.proto' -type f -print0 | xargs -0 echo)
+cd ${SRC_JS_SIMPLESTAMP}
+npm run proto:gen
