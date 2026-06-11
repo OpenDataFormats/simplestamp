@@ -18,7 +18,7 @@ export class Execution {
   static deriveCalendarKey(hash: Buffer, operations: Operation[]): Buffer {
     let index = 0;
     let result = hash;
-    let type = operations[index].type as OperationType;
+    let type = operations[index].type;
 
     while (type !== OperationType.OPERATION_TYPE_ATTESTATION) {
       const operation = operations[index];
@@ -50,7 +50,7 @@ export class Execution {
       }
 
       type = operations[index + 1]
-        ? (operations[index + 1].type as OperationType)
+        ? (operations[index + 1].type)
         : OperationType.OPERATION_TYPE_ATTESTATION;
       index += 1;
     }
@@ -67,7 +67,7 @@ export class Execution {
     const att = { ...attestation };
 
     att.operations.forEach((op) => {
-      const type = op.type as OperationType;
+      const type = op.type;
       const value = Buffer.from(op.value);
 
       switch (type) {

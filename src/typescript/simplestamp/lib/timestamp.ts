@@ -43,9 +43,9 @@ export class Timestamp {
 
     this.calendar_ = new Calendar();
     this.timestamp_ = SimpleStamp.create({
+      created: Timestamp.getNow_(),
       hash: Uint8Array.from(hash),
       nonce: Uint8Array.from(crypto.randomBytes(NONCE_SIZE)),
-      created: Timestamp.getNow_(),
     });
   }
 
@@ -54,7 +54,7 @@ export class Timestamp {
     const ts = new Timestamp(Buffer.alloc(32));
     try {
       ts.timestamp_ = SimpleStamp.decode(binary);
-    } catch (e) {
+    } catch (_e) {
       throw new Error('Failed to decode binary data to SimpleStamp.');
     }
     return ts;
@@ -181,14 +181,14 @@ export class Timestamp {
       throw new Error('Timestamp already sent for attestation, cannot set the identity.');
     }
     this.timestamp_.identity = Identity.create({
-      countryCode,
-      state,
       city,
-      organization,
-      section,
       commonName,
+      countryCode,
       email,
       fullName,
+      organization,
+      section,
+      state,
     });
   }
 
@@ -205,11 +205,11 @@ export class Timestamp {
       throw new Error('Timestamp already sent for attestation, cannot set the location.');
     }
     this.timestamp_.location = Location.create({
+      accuracyMeters: accuracy ?? 0,
+      altitude: altitude ?? 0,
+      direction: direction ?? 0,
       latitude,
       longitude,
-      altitude: altitude ?? 0,
-      accuracyMeters: accuracy ?? 0,
-      direction: direction ?? 0,
       velocity: velocity ?? 0,
     });
   }
@@ -255,17 +255,13 @@ export class Timestamp {
     const attestationsJson: Record<string, unknown>[] = [];
     this.timestamp_.attestations.forEach((attestation) => {
       const obj: Record<string, unknown> = {
-        blockMerkleRoot: Buffer.from(attestation.blockMerkleRoot).toString('hex'),
         blockHeight: attestation.blockHeight,
+        blockMerkleRoot: Buffer.from(attestation.blockMerkleRoot).toString('hex'),
         calendarKey: Execution.deriveCalendarKey(
           this.getDigestHash(),
           attestation.operations,
         ).toString('hex'),
         calendarUrl: attestation.calendarUrl,
-        status: Timestamp.getAttestationStatusLabel(attestation.status),
-        submitted: new Date(attestation.submitted * 1000).toISOString(),
-        timestampMerkleRoot: Buffer.from(attestation.timestampMerkleRoot).toString('hex'),
-        transactionId: Buffer.from(attestation.transactionId).toString('hex'),
         operations: attestation.operations.map((operation) => ({
           blockHeight: operation.blockHeight,
           calendarUrl: operation.calendarUrl,
@@ -274,6 +270,10 @@ export class Timestamp {
           type: Timestamp.getOperationTypeLabel(operation.type),
           value: Buffer.from(operation.value).toString('hex'),
         })),
+        status: Timestamp.getAttestationStatusLabel(attestation.status),
+        submitted: new Date(attestation.submitted * 1000).toISOString(),
+        timestampMerkleRoot: Buffer.from(attestation.timestampMerkleRoot).toString('hex'),
+        transactionId: Buffer.from(attestation.transactionId).toString('hex'),
       };
       attestationsJson.push(obj);
     });

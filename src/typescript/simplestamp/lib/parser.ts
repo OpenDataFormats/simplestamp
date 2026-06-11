@@ -11,8 +11,8 @@ import { Operation, OperationType } from '../models/simplestamp/v1/operation';
 const ATTESTATION_TAG_SIZE = 8;
 
 const ATTESTATION_TAGS: Record<string, AttestationStatus> = {
-  '06869a0d73d71b45': AttestationStatus.ATTESTATION_STATUS_LITECOIN,
   '0588960d73d71901': AttestationStatus.ATTESTATION_STATUS_BITCOIN,
+  '06869a0d73d71b45': AttestationStatus.ATTESTATION_STATUS_LITECOIN,
   '83dfe30d2ef90c8e': AttestationStatus.ATTESTATION_STATUS_PENDING,
 };
 
@@ -27,6 +27,7 @@ export class Parser {
     let value: Buffer | undefined;
 
     while (remainder.length) {
+      // eslint-disable-next-line @typescript-eslint/no-unnecessary-type-assertion
       const type = remainder[0] as OperationType;
       remainder = remainder.slice(1);
 
@@ -44,8 +45,8 @@ export class Parser {
           break;
 
         // OpenTimestamps binary format uses 0x00 as the attestation wire byte.
-        // The proto Operation type field is left at its default (0 = not serialized).
-        case 0: {
+        // The proto Operation type field is left at its default (0 = OPERATION_TYPE_UNKNOWN).
+        case OperationType.OPERATION_TYPE_UNKNOWN: {
           status = Parser.extractAttestationStatus(remainder);
           operation.status = status;
           remainder = remainder.slice(ATTESTATION_TAG_SIZE);

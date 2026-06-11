@@ -107,6 +107,7 @@ export class Calendar {
 
   /* istanbul ignore next */
   private static async defaultRequest_(
+    this: void,
     options: https.RequestOptions,
     payload?: Buffer,
   ): Promise<Buffer | undefined> {

@@ -1,6 +1,6 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<coverage generated="1781152237925" clover="3.2.0">
-  <project timestamp="1781152237925" name="All files">
+<coverage generated="1781154497990" clover="3.2.0">
+  <project timestamp="1781154497990" name="All files">
     <metrics statements="236" coveredstatements="236" conditionals="71" coveredconditionals="71" methods="51" coveredmethods="51" elements="358" coveredelements="358" complexity="0" loc="236" ncloc="236" packages="1" files="4" classes="4"/>
     <file name="calendar.ts" path="/Users/david/src/opendataformats/simplestamp/src/typescript/simplestamp/lib/calendar.ts">
       <metrics statements="36" coveredstatements="36" conditionals="5" coveredconditionals="5" methods="10" coveredmethods="10"/>
@@ -109,47 +109,47 @@
       <line num="24" count="34" type="stmt"/>
       <line num="25" count="34" type="stmt"/>
       <line num="29" count="34" type="stmt"/>
-      <line num="30" count="565" type="stmt"/>
       <line num="31" count="565" type="stmt"/>
-      <line num="33" count="565" type="stmt"/>
-      <line num="35" count="565" type="cond" truecount="7" falsecount="0"/>
-      <line num="39" count="292" type="stmt"/>
-      <line num="43" count="239" type="stmt"/>
+      <line num="32" count="565" type="stmt"/>
+      <line num="34" count="565" type="stmt"/>
+      <line num="36" count="565" type="cond" truecount="7" falsecount="0"/>
+      <line num="40" count="292" type="stmt"/>
       <line num="44" count="239" type="stmt"/>
-      <line num="49" count="26" type="stmt"/>
+      <line num="45" count="239" type="stmt"/>
       <line num="50" count="26" type="stmt"/>
       <line num="51" count="26" type="stmt"/>
-      <line num="54" count="26" type="stmt"/>
-      <line num="56" count="25" type="cond" truecount="4" falsecount="0"/>
-      <line num="58" count="17" type="stmt"/>
-      <line num="61" count="17" type="stmt"/>
-      <line num="64" count="7" type="stmt"/>
+      <line num="52" count="26" type="stmt"/>
+      <line num="55" count="26" type="stmt"/>
+      <line num="57" count="25" type="cond" truecount="4" falsecount="0"/>
+      <line num="59" count="17" type="stmt"/>
+      <line num="62" count="17" type="stmt"/>
       <line num="65" count="7" type="stmt"/>
-      <line num="67" count="1" type="stmt"/>
-      <line num="69" count="25" type="stmt"/>
-      <line num="73" count="8" type="stmt"/>
-      <line num="76" count="556" type="cond" truecount="1" falsecount="0"/>
-      <line num="77" count="239" type="stmt"/>
+      <line num="66" count="7" type="stmt"/>
+      <line num="68" count="1" type="stmt"/>
+      <line num="70" count="25" type="stmt"/>
+      <line num="74" count="8" type="stmt"/>
+      <line num="77" count="556" type="cond" truecount="1" falsecount="0"/>
       <line num="78" count="239" type="stmt"/>
-      <line num="81" count="556" type="stmt"/>
-      <line num="84" count="25" type="stmt"/>
-      <line num="89" count="26" type="stmt"/>
-      <line num="90" count="26" type="cond" truecount="2" falsecount="0"/>
-      <line num="98" count="282" type="stmt"/>
-      <line num="100" count="282" type="cond" truecount="1" falsecount="0"/>
-      <line num="101" count="1" type="stmt"/>
-      <line num="106" count="281" type="stmt"/>
-      <line num="118" count="289" type="stmt"/>
+      <line num="79" count="239" type="stmt"/>
+      <line num="82" count="556" type="stmt"/>
+      <line num="85" count="25" type="stmt"/>
+      <line num="90" count="26" type="stmt"/>
+      <line num="91" count="26" type="cond" truecount="2" falsecount="0"/>
+      <line num="99" count="282" type="stmt"/>
+      <line num="101" count="282" type="cond" truecount="1" falsecount="0"/>
+      <line num="102" count="1" type="stmt"/>
+      <line num="107" count="281" type="stmt"/>
       <line num="119" count="289" type="stmt"/>
-      <line num="121" count="289" type="stmt"/>
-      <line num="122" count="303" type="stmt"/>
-      <line num="124" count="303" type="stmt"/>
+      <line num="120" count="289" type="stmt"/>
+      <line num="122" count="289" type="stmt"/>
+      <line num="123" count="303" type="stmt"/>
       <line num="125" count="303" type="stmt"/>
-      <line num="129" count="289" type="stmt"/>
-      <line num="134" count="11" type="stmt"/>
+      <line num="126" count="303" type="stmt"/>
+      <line num="130" count="289" type="stmt"/>
       <line num="135" count="11" type="stmt"/>
-      <line num="136" count="352" type="stmt"/>
-      <line num="138" count="11" type="stmt"/>
+      <line num="136" count="11" type="stmt"/>
+      <line num="137" count="352" type="stmt"/>
+      <line num="139" count="11" type="stmt"/>
     </file>
     <file name="timestamp.ts" path="/Users/david/src/opendataformats/simplestamp/src/typescript/simplestamp/lib/timestamp.ts">
       <metrics statements="96" coveredstatements="96" conditionals="28" coveredconditionals="28" methods="32" coveredmethods="32"/>
@@ -231,7 +231,7 @@
       <line num="255" count="4" type="stmt"/>
       <line num="256" count="4" type="stmt"/>
       <line num="257" count="3" type="stmt"/>
-      <line num="269" count="15" type="stmt"/>
+      <line num="265" count="15" type="stmt"/>
       <line num="278" count="3" type="stmt"/>
       <line num="280" count="4" type="stmt"/>
       <line num="282" count="4" type="stmt"/>
