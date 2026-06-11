@@ -95,7 +95,7 @@ export class Timestamp {
 
   /** Get a readable label for an AttestationStatus value. */
   static getAttestationStatusLabel(status: number): string {
-    return (STATUS_LABELS.get(status) ?? STATUS_LABELS.get(0) ?? 'ATTESTATION_STATUS_INVALID')
+    return (STATUS_LABELS.get(status) ?? 'ATTESTATION_STATUS_INVALID')
       .replace('ATTESTATION_STATUS_', '');
   }
 
@@ -131,9 +131,7 @@ export class Timestamp {
   /** Get a readable label for an OperationType value. */
   static getOperationTypeLabel(type: number): string {
     return (
-      OPERATION_TYPE_LABELS.get(type) ??
-      OPERATION_TYPE_LABELS.get(OperationType.OPERATION_TYPE_ATTESTATION) ??
-      'OPERATION_TYPE_ATTESTATION'
+      OPERATION_TYPE_LABELS.get(type) ?? 'OPERATION_TYPE_ATTESTATION'
     ).replace('OPERATION_TYPE_', '');
   }
 

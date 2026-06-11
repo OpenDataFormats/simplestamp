@@ -14,6 +14,7 @@ const binTimestamp2 = fs.readFileSync(path.join(DATA, 'timestamp02.bin'));
 const requestMockReq = jest.fn(() => Promise.resolve(binRequest));
 const requestMockRes = jest.fn(() => Promise.resolve(binResponse));
 const requestMockBadData = jest.fn(() => Promise.resolve(Buffer.alloc(100, 9)));
+const requestMockUndefined = jest.fn(() => Promise.resolve(undefined));
 
 describe('Calendar: Stamping a Timestamp without attestations', () => {
   test('.stamp handles binary data from the remote server correctly', async () => {
@@ -28,6 +29,13 @@ describe('Calendar: Stamping a Timestamp without attestations', () => {
     t.calendar_.request_ = requestMockBadData;
     await t.stamp();
     expect(requestMockBadData).toHaveBeenCalled();
+  });
+
+  test('.stamp handles undefined response from the remote server correctly', async () => {
+    const t = Timestamp.fromBinary(binTimestamp0);
+    t.calendar_.request_ = requestMockUndefined;
+    await t.stamp();
+    expect(requestMockUndefined).toHaveBeenCalled();
   });
 });
 
@@ -53,5 +61,15 @@ describe('Calendar: Updating a Timestamp', () => {
     t.calendar_.request_ = requestMockRes;
     const updated = await t.update();
     expect(updated).toBe(false);
+  });
+
+  test('.update returns false when upgradeAttestation throws unexpectedly', async () => {
+    const t = Timestamp.fromBinary(binTimestamp1);
+    t.calendar_.request_ = requestMockRes;
+    jest.spyOn(t, 'upgradeAttestation').mockImplementation(() => {
+      throw new Error('simulated unexpected error');
+    });
+    const result = await t.update();
+    expect(result).toBe(false);
   });
 });

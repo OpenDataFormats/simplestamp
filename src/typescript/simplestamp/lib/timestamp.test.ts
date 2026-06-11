@@ -1,6 +1,7 @@
 import * as fs from 'fs';
 import * as path from 'path';
 
+import { AttestationStatus } from '../models/simplestamp/v1/status';
 import { Timestamp } from './timestamp';
 
 const DATA = path.join(__dirname, '../../../tests/data');
@@ -126,6 +127,12 @@ describe('Timestamp: Setting rich details are included in the digest hash', () =
       t.setIdentity('This should throw', '', '', '', '', '', '', '');
     }).toThrow();
   });
+
+  test('setDescription stores the value', () => {
+    const t = new Timestamp(Buffer.alloc(32));
+    t.setDescription('a useful note');
+    expect(t.timestamp_.description).toBe('a useful note');
+  });
 });
 
 describe('Timestamp: Adding attestation binary data', () => {
@@ -153,6 +160,18 @@ describe('Timestamp: Adding attestation binary data', () => {
       t.upgradeAttestation(upgradeKey, binResponse);
       t.upgradeAttestation(upgradeKey, binResponse);
     }).toThrow();
+  });
+
+  test('Upgrading an already-upgraded attestation throws the expected message', () => {
+    const t = Timestamp.fromBinary(binTimestamp1);
+    // Patch the PENDING attestation to BITCOIN so the status check at line 304 fires
+    t.timestamp_.attestations[0] = {
+      ...t.timestamp_.attestations[0],
+      status: AttestationStatus.ATTESTATION_STATUS_BITCOIN,
+    };
+    expect(() => {
+      t.upgradeAttestation(upgradeKey, binResponse);
+    }).toThrow('Attestation has already been upgraded with timestamp data.');
   });
 });
 
