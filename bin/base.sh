@@ -16,5 +16,5 @@ ROOT_DIR="${BIN_DIR}/.."
 #
 # Source code root folders
 #
-SRC_JS_DIR="${ROOT_DIR}/src/typescript"
-SRC_JS_SIMPLESTAMP="${SRC_JS_DIR}/simplestamp"
+SRC_TS_DIR="${ROOT_DIR}/src/typescript"
+SRC_TS_SIMPLESTAMP="${SRC_TS_DIR}/simplestamp"
