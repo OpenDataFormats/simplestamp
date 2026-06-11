@@ -6,3 +6,5 @@
  * @license Unlicense https://unlicense.org
  */
 export { Timestamp } from './lib/timestamp';
+export type { Attestation } from './models/simplestamp/v1/attestation';
+export { AttestationStatus } from './models/simplestamp/v1/status';
