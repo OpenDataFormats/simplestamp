@@ -1,6 +1,6 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<coverage generated="1781154497990" clover="3.2.0">
-  <project timestamp="1781154497990" name="All files">
+<coverage generated="1781156771013" clover="3.2.0">
+  <project timestamp="1781156771014" name="All files">
     <metrics statements="236" coveredstatements="236" conditionals="71" coveredconditionals="71" methods="51" coveredmethods="51" elements="358" coveredelements="358" complexity="0" loc="236" ncloc="236" packages="1" files="4" classes="4"/>
     <file name="calendar.ts" path="/Users/david/src/opendataformats/simplestamp/src/typescript/simplestamp/lib/calendar.ts">
       <metrics statements="36" coveredstatements="36" conditionals="5" coveredconditionals="5" methods="10" coveredmethods="10"/>
