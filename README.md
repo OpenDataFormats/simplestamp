@@ -4,20 +4,23 @@
 
 ECMAScript/JS 6 Node library for creating compact, portable [Open Timestamps](https://en.wikipedia.org/wiki/OpenTimestamps) attestations.
 
-* [OpenTimestamps](#opentimestamps)
-* [Motivation](#motivation)
-* [Implementation](#implementation)
-* [Agnostic](#agnostic)
-* [Data Model](#data-model)
-  * [`simplestamp.v1.Timestamp`](#simplestampv1timestamp)
-  * [`simplestamp.v1.Attestation`](#simplestampv1attestation)
-  * [`simplestamp.v1.Identity`](#simplestampv1identity)
-  * [`simplestamp.v1.Location`](#simplestampv1location)
-  * [Computing the hash](#computing-the-hash)
-* [Using](#using)
-  * [Creating a new Timestamp](#creating-a-new-timestamp)
-  * [Updating a Timestamp](#updating-a-timestamp)
-* [Testing](#testing)
+- [SimpleStamp](#simplestamp)
+  - [OpenTimestamps](#opentimestamps)
+  - [Motivation](#motivation)
+  - [Implementation](#implementation)
+  - [Agnostic](#agnostic)
+  - [Data Model](#data-model)
+    - [`simplestamp.v1.Timestamp`](#simplestampv1timestamp)
+    - [`simplestamp.v1.Attestation`](#simplestampv1attestation)
+    - [`simplestamp.v1.Identity`](#simplestampv1identity)
+    - [`simplestamp.v1.Location`](#simplestampv1location)
+    - [Computing the hash](#computing-the-hash)
+  - [Using](#using)
+    - [Creating a new Timestamp](#creating-a-new-timestamp)
+    - [Updating a Timestamp](#updating-a-timestamp)
+    - [Saving a Timestamp](#saving-a-timestamp)
+    - [Loading a Timestamp](#loading-a-timestamp)
+  - [Testing](#testing)
 
 ## OpenTimestamps
 
@@ -219,7 +222,7 @@ const timestamp = SimpleStamp.fromBinary(data);
 
 ## Testing
 
-Run tests from the source root. This will also generate the JSDocs and lint the code.
+Run tests and lint the code from the source root.
 
 ```shell
 ./bin/run.tests.sh

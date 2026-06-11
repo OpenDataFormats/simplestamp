@@ -3,7 +3,7 @@
 <html lang="en">
 
 <head>
-    <title>Code coverage report for parser.js</title>
+    <title>Code coverage report for execution.ts</title>
     <meta charset="utf-8" />
     <link rel="stylesheet" href="prettify.css" />
     <link rel="stylesheet" href="base.css" />
@@ -19,34 +19,34 @@
 <body>
 <div class='wrapper'>
     <div class='pad1'>
-        <h1><a href="index.html">All files</a> parser.js</h1>
+        <h1><a href="index.html">All files</a> execution.ts</h1>
         <div class='clearfix'>
             
             <div class='fl pad1y space-right2'>
                 <span class="strong">100% </span>
                 <span class="quiet">Statements</span>
-                <span class='fraction'>50/50</span>
+                <span class='fraction'>55/55</span>
             </div>
         
             
             <div class='fl pad1y space-right2'>
                 <span class="strong">100% </span>
                 <span class="quiet">Branches</span>
-                <span class='fraction'>16/16</span>
+                <span class='fraction'>23/23</span>
             </div>
         
             
             <div class='fl pad1y space-right2'>
                 <span class="strong">100% </span>
                 <span class="quiet">Functions</span>
-                <span class='fraction'>5/5</span>
+                <span class='fraction'>4/4</span>
             </div>
         
             
             <div class='fl pad1y space-right2'>
                 <span class="strong">100% </span>
                 <span class="quiet">Lines</span>
-                <span class='fraction'>49/49</span>
+                <span class='fraction'>55/55</span>
             </div>
         
             
@@ -54,6 +54,12 @@
         <p class="quiet">
             Press <em>n</em> or <em>j</em> to go to the next uncovered block, <em>b</em>, <em>p</em> or <em>k</em> for the previous block.
         </p>
+        <template id="filterTemplate">
+            <div class="quiet">
+                Filter:
+                <input type="search" id="fileSearch">
+            </div>
+        </template>
     </div>
     <div class='status-line high'></div>
     <pre><table class="coverage">
@@ -187,372 +193,275 @@
 <a name='L128'></a><a href='#L128'>128</a>
 <a name='L129'></a><a href='#L129'>129</a>
 <a name='L130'></a><a href='#L130'>130</a>
-<a name='L131'></a><a href='#L131'>131</a>
-<a name='L132'></a><a href='#L132'>132</a>
-<a name='L133'></a><a href='#L133'>133</a>
-<a name='L134'></a><a href='#L134'>134</a>
-<a name='L135'></a><a href='#L135'>135</a>
-<a name='L136'></a><a href='#L136'>136</a>
-<a name='L137'></a><a href='#L137'>137</a>
-<a name='L138'></a><a href='#L138'>138</a>
-<a name='L139'></a><a href='#L139'>139</a>
-<a name='L140'></a><a href='#L140'>140</a>
-<a name='L141'></a><a href='#L141'>141</a>
-<a name='L142'></a><a href='#L142'>142</a>
-<a name='L143'></a><a href='#L143'>143</a>
-<a name='L144'></a><a href='#L144'>144</a>
-<a name='L145'></a><a href='#L145'>145</a>
-<a name='L146'></a><a href='#L146'>146</a>
-<a name='L147'></a><a href='#L147'>147</a>
-<a name='L148'></a><a href='#L148'>148</a>
-<a name='L149'></a><a href='#L149'>149</a>
-<a name='L150'></a><a href='#L150'>150</a>
-<a name='L151'></a><a href='#L151'>151</a>
-<a name='L152'></a><a href='#L152'>152</a>
-<a name='L153'></a><a href='#L153'>153</a>
-<a name='L154'></a><a href='#L154'>154</a>
-<a name='L155'></a><a href='#L155'>155</a>
-<a name='L156'></a><a href='#L156'>156</a>
-<a name='L157'></a><a href='#L157'>157</a>
-<a name='L158'></a><a href='#L158'>158</a>
-<a name='L159'></a><a href='#L159'>159</a>
-<a name='L160'></a><a href='#L160'>160</a>
-<a name='L161'></a><a href='#L161'>161</a>
-<a name='L162'></a><a href='#L162'>162</a>
-<a name='L163'></a><a href='#L163'>163</a></td><td class="line-coverage quiet"><span class="cline-any cline-neutral">&nbsp;</span>
+<a name='L131'></a><a href='#L131'>131</a></td><td class="line-coverage quiet"><span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-yes">3x</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
-<span class="cline-any cline-yes">4x</span>
-<span class="cline-any cline-yes">4x</span>
+<span class="cline-any cline-yes">3x</span>
+<span class="cline-any cline-yes">3x</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
-<span class="cline-any cline-yes">4x</span>
-<span class="cline-any cline-yes">4x</span>
+<span class="cline-any cline-yes">3x</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-yes">38x</span>
+<span class="cline-any cline-yes">38x</span>
+<span class="cline-any cline-yes">38x</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-yes">38x</span>
+<span class="cline-any cline-yes">588x</span>
+<span class="cline-any cline-yes">588x</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-yes">588x</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-yes">1x</span>
+<span class="cline-any cline-yes">1x</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-yes">1x</span>
+<span class="cline-any cline-yes">1x</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-yes">272x</span>
+<span class="cline-any cline-yes">272x</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
-<span class="cline-any cline-yes">34x</span>
-<span class="cline-any cline-yes">34x</span>
+<span class="cline-any cline-yes">159x</span>
+<span class="cline-any cline-yes">159x</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-yes">112x</span>
+<span class="cline-any cline-yes">112x</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
-<span class="cline-any cline-yes">34x</span>
-<span class="cline-any cline-yes">565x</span>
-<span class="cline-any cline-yes">565x</span>
+<span class="cline-any cline-yes">43x</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
-<span class="cline-any cline-yes">565x</span>
-<span class="cline-any cline-yes">565x</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
-<span class="cline-any cline-yes">565x</span>
+<span class="cline-any cline-yes">588x</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-yes">588x</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
-<span class="cline-any cline-yes">292x</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-yes">38x</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
-<span class="cline-any cline-yes">239x</span>
-<span class="cline-any cline-yes">239x</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
-<span class="cline-any cline-yes">26x</span>
-<span class="cline-any cline-yes">26x</span>
-<span class="cline-any cline-yes">26x</span>
-<span class="cline-any cline-yes">26x</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
-<span class="cline-any cline-yes">25x</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
-<span class="cline-any cline-yes">17x</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-yes">18x</span>
+<span class="cline-any cline-yes">18x</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
-<span class="cline-any cline-yes">17x</span>
+<span class="cline-any cline-yes">18x</span>
+<span class="cline-any cline-yes">416x</span>
+<span class="cline-any cline-yes">416x</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-yes">416x</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
-<span class="cline-any cline-yes">7x</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
-<span class="cline-any cline-yes">7x</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
-<span class="cline-any cline-yes">25x</span>
+<span class="cline-any cline-yes">22x</span>
+<span class="cline-any cline-yes">22x</span>
+<span class="cline-any cline-yes">22x</span>
+<span class="cline-any cline-yes">22x</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
-<span class="cline-any cline-yes">8x</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-yes">1x</span>
+<span class="cline-any cline-yes">1x</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
-<span class="cline-any cline-yes">556x</span>
-<span class="cline-any cline-yes">239x</span>
-<span class="cline-any cline-yes">239x</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-yes">1x</span>
+<span class="cline-any cline-yes">1x</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
-<span class="cline-any cline-yes">556x</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-yes">210x</span>
+<span class="cline-any cline-yes">210x</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
-<span class="cline-any cline-yes">25x</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-yes">99x</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-yes">99x</span>
+<span class="cline-any cline-yes">5x</span>
+<span class="cline-any cline-yes">5x</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-yes">99x</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
-<span class="cline-any cline-yes">26x</span>
-<span class="cline-any cline-yes">26x</span>
+<span class="cline-any cline-yes">82x</span>
+<span class="cline-any cline-yes">5x</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-yes">82x</span>
+<span class="cline-any cline-yes">82x</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
-<span class="cline-any cline-neutral">&nbsp;</span>
-<span class="cline-any cline-neutral">&nbsp;</span>
-<span class="cline-any cline-neutral">&nbsp;</span>
-<span class="cline-any cline-neutral">&nbsp;</span>
-<span class="cline-any cline-neutral">&nbsp;</span>
-<span class="cline-any cline-neutral">&nbsp;</span>
-<span class="cline-any cline-neutral">&nbsp;</span>
-<span class="cline-any cline-neutral">&nbsp;</span>
-<span class="cline-any cline-yes">282x</span>
-<span class="cline-any cline-neutral">&nbsp;</span>
-<span class="cline-any cline-yes">282x</span>
 <span class="cline-any cline-yes">1x</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
-<span class="cline-any cline-yes">281x</span>
+<span class="cline-any cline-yes">17x</span>
+<span class="cline-any cline-yes">5x</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-yes">17x</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-yes">616x</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
-<span class="cline-any cline-neutral">&nbsp;</span>
-<span class="cline-any cline-neutral">&nbsp;</span>
-<span class="cline-any cline-neutral">&nbsp;</span>
-<span class="cline-any cline-neutral">&nbsp;</span>
-<span class="cline-any cline-neutral">&nbsp;</span>
-<span class="cline-any cline-neutral">&nbsp;</span>
-<span class="cline-any cline-neutral">&nbsp;</span>
-<span class="cline-any cline-neutral">&nbsp;</span>
-<span class="cline-any cline-neutral">&nbsp;</span>
-<span class="cline-any cline-neutral">&nbsp;</span>
-<span class="cline-any cline-yes">289x</span>
-<span class="cline-any cline-yes">289x</span>
-<span class="cline-any cline-neutral">&nbsp;</span>
-<span class="cline-any cline-yes">289x</span>
-<span class="cline-any cline-yes">303x</span>
-<span class="cline-any cline-yes">303x</span>
-<span class="cline-any cline-yes">303x</span>
-<span class="cline-any cline-neutral">&nbsp;</span>
-<span class="cline-any cline-neutral">&nbsp;</span>
-<span class="cline-any cline-yes">289x</span>
-<span class="cline-any cline-neutral">&nbsp;</span>
-<span class="cline-any cline-neutral">&nbsp;</span>
-<span class="cline-any cline-neutral">&nbsp;</span>
-<span class="cline-any cline-neutral">&nbsp;</span>
-<span class="cline-any cline-neutral">&nbsp;</span>
-<span class="cline-any cline-neutral">&nbsp;</span>
-<span class="cline-any cline-neutral">&nbsp;</span>
-<span class="cline-any cline-neutral">&nbsp;</span>
-<span class="cline-any cline-neutral">&nbsp;</span>
-<span class="cline-any cline-neutral">&nbsp;</span>
-<span class="cline-any cline-neutral">&nbsp;</span>
-<span class="cline-any cline-neutral">&nbsp;</span>
-<span class="cline-any cline-neutral">&nbsp;</span>
-<span class="cline-any cline-yes">11x</span>
-<span class="cline-any cline-yes">11x</span>
-<span class="cline-any cline-yes">352x</span>
-<span class="cline-any cline-neutral">&nbsp;</span>
-<span class="cline-any cline-yes">11x</span>
-<span class="cline-any cline-neutral">&nbsp;</span>
-<span class="cline-any cline-neutral">&nbsp;</span>
-<span class="cline-any cline-neutral">&nbsp;</span>
-<span class="cline-any cline-neutral">&nbsp;</span>
-<span class="cline-any cline-yes">4x</span>
-<span class="cline-any cline-neutral">&nbsp;</span></td><td class="text"><pre class="prettyprint lang-js">/* eslint no-bitwise: 0 */
-/**
- * @fileoverview Parser for converting binary data from the calendar server
- * into the protocol buffer format.
+<span class="cline-any cline-neutral">&nbsp;</span></td><td class="text"><pre class="prettyprint lang-js">/**
+ * @fileoverview Iterates over a list of operations and performs them on a source input.
  *
  * @author davidarvan
  * @license Unlicense https://unlicense.org
  */
-const { AttestationStatus } = require('../models/simplestamp/v1/status_pb');
-const { Operation, OperationType } = require('../models/simplestamp/v1/operation_pb');
+import * as crypto from 'crypto';
 &nbsp;
-const ATTESTATION_TAG_SIZE = 8;
-const ATTESTATION_TAGS = {
-  '06869a0d73d71b45': AttestationStatus.ATTESTATION_STATUS_LITECOIN,
-  '0588960d73d71901': AttestationStatus.ATTESTATION_STATUS_BITCOIN,
-  '83dfe30d2ef90c8e': AttestationStatus.ATTESTATION_STATUS_PENDING,
-};
+import { Attestation } from '../models/simplestamp/v1/attestation';
+import { Operation, OperationType } from '../models/simplestamp/v1/operation';
+import { Parser } from './parser';
 &nbsp;
-&nbsp;
-class Parser {
+export class Execution {
   /**
-   * Extract the sequence of operations from binary data returned by a calendar server.
-   *
-   * @param {Buffer} binary The data to operate on.
-   * @return {Array.&lt;proto.simplestamp.v1.Operation&gt;}
+   * Given a source hash and list of operations, iterate over them to derive
+   * the calendar server key. Stops at the first attestation operation.
    */
-  static parseServerResponse(binary) {
-    const operations = [];
-    let remainder = binary;
-    let payload;
-    let status;
-    let value;
+  static deriveCalendarKey(hash: Buffer, operations: Operation[]): Buffer {
+    let index = 0;
+    let result = hash;
+    let type = operations[index].type;
 &nbsp;
-    while (remainder.length) {
-      const type = remainder[0];
-      remainder = remainder.slice(1);
-&nbsp;
-      const operation = new Operation();
-      operation.setType(type);
+    while (type !== OperationType.OPERATION_TYPE_ATTESTATION) {
+      const operation = operations[index];
+      const value = Buffer.from(operation.value);
 &nbsp;
       switch (type) {
         case OperationType.OPERATION_TYPE_SHA1:
+          result = crypto.createHash('sha1').update(result).digest();
+          break;
+&nbsp;
         case OperationType.OPERATION_TYPE_RIPEMD160:
+          result = crypto.createHash('ripemd160').update(result).digest();
+          break;
+&nbsp;
         case OperationType.OPERATION_TYPE_SHA256:
+          result = Execution.sha256(result);
           break;
+&nbsp;
         case OperationType.OPERATION_TYPE_APPEND:
+          result = Buffer.concat([result, value]);
+          break;
+&nbsp;
         case OperationType.OPERATION_TYPE_PREPEND:
-          [value, remainder] = Parser.extractVariableBytes(remainder);
+          result = Buffer.concat([value, result]);
           break;
-        // OpenTimestamps binary format uses 0x00 as the attestation wire byte.
-        // The proto Operation type field is left at its default (0 = not serialized).
-        case 0:
-          status = Parser.extractAttestationStatus(remainder);
-          operation.setStatus(status);
-          remainder = remainder.slice(ATTESTATION_TAG_SIZE);
-          [payload, remainder] = Parser.extractVariableBytes(remainder);
 &nbsp;
-          switch (status) {
-            case AttestationStatus.ATTESTATION_STATUS_PENDING:
-              operation.setCalendarUrl(
-                Buffer.from(Parser.extractVariableBytes(payload)[0]).toString('ascii'),
-              );
-              break;
-            case AttestationStatus.ATTESTATION_STATUS_BITCOIN:
-            case AttestationStatus.ATTESTATION_STATUS_LITECOIN:
-              operation.setBlockHeight(
-                Parser.extractVariableInteger(payload)[0],
-              );
-              break;
-          }
-          break;
         default:
-          throw new Error(`Operation with type ${type} not supported.`);
+          break;
       }
 &nbsp;
-      if (value) {
-        operation.setValue(Uint8Array.from(value));
-        value = undefined;
-      }
-&nbsp;
-      operations.push(operation);
+      type = operations[index + 1]
+        ? (operations[index + 1].type)
+        : OperationType.OPERATION_TYPE_ATTESTATION;
+      index += 1;
     }
 &nbsp;
-    return operations;
-  }
-&nbsp;
-&nbsp;
-  /**
-   * Figure out the correct status flag from the binary tag.
-   */
-  static extractAttestationStatus(binary) {
-    const tag = binary.slice(0, ATTESTATION_TAG_SIZE).toString('hex');
-    return ATTESTATION_TAGS[tag] || AttestationStatus.ATTESTATION_STATUS_UNKNOWN;
-  }
-&nbsp;
-&nbsp;
-  /**
-   * Reads the initial bytes as a variable length int that indicates how many more
-   * bytes to read. Returns an array of the extracted part and the remainder bytes.
-   *
-   * @param  {Buffer} binary The bytes to read from
-   * @return {Array.&lt;Buffer,Buffer&gt;}
-   */
-  static extractVariableBytes(binary) {
-    const [size, remainder] = Parser.extractVariableInteger(binary);
-&nbsp;
-    if (size &gt; remainder.length) {
-      throw new Error(
-        `Varint expects ${size} bytes of data, only have ${remainder.length}.`,
-      );
-    }
-&nbsp;
-    return [
-      remainder.slice(0, size),
-      remainder.slice(size),
-    ];
-  }
-&nbsp;
-&nbsp;
-  /**
-   * Reads in bytes as an unsigned variable length integer, where
-   * the first bit indicates there are more bytes that make up the
-   * value. Returns an array of the value and the remainder bytes.
-   *
-   * @param  {Buffer} binary The bytes to read from
-   * @return {Array.&lt;Number,Buffer&gt;}
-   */
-  static extractVariableInteger(binary) {
-    let byte;
-    let varint = 0;
-    let position = 0;
-&nbsp;
-    do {
-      byte = binary[position];
-      varint |= (byte &amp; 0b01111111) &lt;&lt; (position * 7);
-      position += 1;
-    } while (byte &amp; 0b10000000);
-&nbsp;
-    return [
-      varint,
-      binary.slice(position),
-    ];
-  }
-&nbsp;
-&nbsp;
-  /**
-   * Reverse the bytes in a buffer.
-   *
-   * @param {Buffer} input
-   * @return {Buffer}
-   */
-  static reverse(input) {
-    const result = Buffer.alloc(input.length);
-    for (let index = 0; index &lt; input.length; index += 1) {
-      result[index] = input[input.length - index - 1];
-    }
     return result;
   }
+&nbsp;
+  /**
+   * Takes an initial input and an Attestation, runs all its operations, and
+   * returns the mutated Attestation.
+   */
+  static processOperations(initial: Buffer, attestation: Attestation): Attestation {
+    let result = initial;
+    const att = { ...attestation };
+&nbsp;
+    att.operations.forEach((op) =&gt; {
+      const type = op.type;
+      const value = Buffer.from(op.value);
+&nbsp;
+      switch (type) {
+        // Handle both OPERATION_TYPE_UNKNOWN (0, the proto default / OT wire byte) and
+        // OPERATION_TYPE_ATTESTATION (1) so that ops deserialized from stored protos work too.
+        case OperationType.OPERATION_TYPE_UNKNOWN:
+        case OperationType.OPERATION_TYPE_ATTESTATION:
+          att.status = op.status;
+          att.calendarUrl = op.calendarUrl || att.calendarUrl;
+          att.blockHeight = op.blockHeight || att.blockHeight;
+          break;
+&nbsp;
+        case OperationType.OPERATION_TYPE_SHA1:
+          result = crypto.createHash('sha1').update(result).digest();
+          break;
+&nbsp;
+        case OperationType.OPERATION_TYPE_RIPEMD160:
+          result = crypto.createHash('ripemd160').update(result).digest();
+          break;
+&nbsp;
+        case OperationType.OPERATION_TYPE_SHA256:
+          result = Execution.sha256(result);
+          break;
+&nbsp;
+        case OperationType.OPERATION_TYPE_APPEND:
+          result = Buffer.concat([result, value]);
+          // If we're about to append only 4 bytes, we've built a transaction,
+          // and the reversed double hash will be the transaction ID.
+          if (value.length === 4) {
+            const txId = Parser.reverse(Execution.sha256(Execution.sha256(result)));
+            att.transactionId = Uint8Array.from(txId);
+          }
+          break;
+&nbsp;
+        case OperationType.OPERATION_TYPE_PREPEND:
+          // If concatenating with large data, we have the merkle root of the hashes
+          if (value.length &gt; 64) {
+            att.timestampMerkleRoot = Uint8Array.from(result);
+          }
+          result = Buffer.concat([value, result]);
+          break;
+&nbsp;
+        default:
+          throw new Error(`Unsupported operation type: ${type}`);
+      }
+    });
+&nbsp;
+    // If a block height was set, we have the block merkle root data
+    if (att.blockHeight) {
+      att.blockMerkleRoot = Uint8Array.from(Parser.reverse(result));
+    }
+&nbsp;
+    return att;
+  }
+&nbsp;
+  /** SHA256 hash the input binary. */
+  static sha256(input: Buffer): Buffer {
+    return crypto.createHash('sha256').update(Buffer.from(input)).digest();
+  }
 }
-&nbsp;
-&nbsp;
-module.exports = Parser;
 &nbsp;</pre></td></tr></table></pre>
 
                 <div class='push'></div><!-- for sticky footer -->
             </div><!-- /wrapper -->
             <div class='footer quiet pad2 space-top1 center small'>
                 Code coverage generated by
-                <a href="https://istanbul.js.org/" target="_blank">istanbul</a>
-                at Wed Jun 10 2026 15:04:19 GMT+0000 (Coordinated Universal Time)
+                <a href="https://istanbul.js.org/" target="_blank" rel="noopener noreferrer">istanbul</a>
+                at 2026-06-11T05:08:17.983Z
             </div>
-        </div>
         <script src="prettify.js"></script>
         <script>
             window.onload = function () {

@@ -13,8 +13,3 @@ npm run lint
 info "Running JS tests"
 
 npm run test
-
-
-info "Generating code docs"
-
-npm run docs
